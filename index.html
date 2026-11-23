@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Egg Clicker ไข่หรรษา - Advanced Edition</title>
-    <!-- โหลดฟอนต์ภาษาไทย Kanit และ Prompt จาก Google Fonts -->
+    <title>Egg Clicker ไข่หรรษา - Ultra Smooth Edition</title>
+    <!-- โหลดฟอนต์ภาษาไทย Kanit และ Prompt -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&family=Prompt:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700;800&family=Prompt:wght@500;600;700;800&display=swap" rel="stylesheet">
     <!-- โหลด Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -21,8 +21,8 @@
                     colors: {
                         eggshell: {
                             50: '#FCF7F0',
-                            100: '#F7E8D4',
-                            200: '#EED7B9',
+                            100: '#F5E4D0',
+                            200: '#E9D0B3',
                             300: '#DFC29D',
                             400: '#CFA97E',
                             500: '#BA8F60',
@@ -49,62 +49,46 @@
             margin: 0;
             padding: 0;
             min-height: 100vh;
-            background: linear-gradient(160deg, #E0F2FE 0%, #BAE6FD 34%, #7DD3FC 68%, #38BDF8 100%);
+            background: linear-gradient(160deg, #E0F2FE 0%, #7DD3FC 52%, #38BDF8 100%);
             overflow-x: hidden;
             color: #4B3219;
         }
 
-        /* แสงแดดและบรรยากาศท้องฟ้าฟุ้งนุ่มนวล */
+        /* แสงแดดและบรรยากาศท้องฟ้าสีฟ้า (เลเยอร์คงที่ ไม่มีการคำนวณซ้ำรายเฟรม) */
         .sky-atmosphere {
             position: fixed;
             inset: 0;
             pointer-events: none;
             z-index: 0;
             background:
-                radial-gradient(circle at 16% 12%, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0) 44%),
-                radial-gradient(circle at 84% 20%, rgba(254, 249, 195, 0.48) 0%, rgba(254, 249, 195, 0) 38%),
-                radial-gradient(circle at 50% 88%, rgba(224, 242, 254, 0.6) 0%, rgba(224, 242, 254, 0) 52%);
+                radial-gradient(circle at 16% 12%, rgba(255, 255, 255, 0.78) 0%, rgba(255, 255, 255, 0) 44%),
+                radial-gradient(circle at 84% 20%, rgba(254, 249, 195, 0.45) 0%, rgba(254, 249, 195, 0) 38%),
+                radial-gradient(circle at 50% 88%, rgba(224, 242, 254, 0.55) 0%, rgba(224, 242, 254, 0) 52%);
         }
 
-        /* พื้นผิวเปลือกไข่ (Eggshell Speckle & Pore Texture) สำหรับแผง UI อัพเกรด */
+        /* แผง UI สีเนื้อไข่ (#F5E4D0 / #E9D0B3) รับพื้นผิวลายจุดเปลือกไข่จาก Offscreen Canvas */
         .eggshell-panel {
             position: relative;
-            background-color: #F7E8D4;
-            background-image:
-                radial-gradient(rgba(148, 107, 64, 0.16) 1px, transparent 0),
-                radial-gradient(rgba(110, 77, 43, 0.11) 1.5px, transparent 0),
-                radial-gradient(rgba(255, 255, 255, 0.52) 1px, transparent 0),
-                linear-gradient(150deg, #F9EDE0 0%, #EED7B9 52%, #DFC29D 100%);
-            background-size: 24px 24px, 41px 41px, 17px 17px, 100% 100%;
-            background-position: 0 0, 11px 16px, 6px 8px, 0 0;
+            background-color: #F5E4D0;
+            background-repeat: repeat;
+            background-size: 128px 128px;
             border: 2px solid #BA8F60;
-            box-shadow:
-                0 16px 38px -8px rgba(14, 116, 144, 0.28),
-                inset 0 2px 4px rgba(255, 255, 255, 0.78),
-                inset 0 -3px 7px rgba(148, 107, 64, 0.24);
+            box-shadow: 0 12px 28px -6px rgba(14, 116, 144, 0.22);
         }
 
         .eggshell-card {
-            background-color: #FAF0E4;
-            background-image:
-                radial-gradient(rgba(148, 107, 64, 0.16) 1px, transparent 0),
-                radial-gradient(rgba(110, 77, 43, 0.10) 1.5px, transparent 0),
-                linear-gradient(180deg, rgba(255, 255, 255, 0.68) 0%, rgba(223, 194, 157, 0.42) 100%);
-            background-size: 20px 20px, 35px 35px, 100% 100%;
-            background-position: 0 0, 9px 13px, 0 0;
+            background-color: #F8EBDC;
+            background-repeat: repeat;
+            background-size: 128px 128px;
             border: 1.5px solid #BA8F60;
-            box-shadow:
-                0 4px 10px rgba(110, 77, 43, 0.10),
-                inset 0 1px 2px rgba(255, 255, 255, 0.85);
-            transition: transform 0.16s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.16s ease, border-color 0.16s ease, filter 0.16s ease;
+            box-shadow: 0 3px 8px rgba(110, 77, 43, 0.08);
+            transition: transform 0.12s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.12s ease;
+            will-change: transform;
         }
 
         .eggshell-card.affordable:hover {
             transform: translateY(-2px);
             border-color: #946B40;
-            box-shadow:
-                0 8px 18px rgba(110, 77, 43, 0.18),
-                inset 0 1px 3px rgba(255, 255, 255, 0.92);
         }
 
         .eggshell-card.affordable:active {
@@ -113,145 +97,283 @@
 
         .eggshell-card.locked {
             opacity: 0.68;
-            filter: saturate(0.75);
         }
 
-        /* คอนเทนเนอร์ไข่หลัก: โปร่งใส ไร้กรอบ ไร้พื้นหลัง ไร้รูปร่างไข่เก่า */
+        /* การ์ดมินิเกมจับจังหวะตัวคูณ (ใช้พื้นผิวเปลือกไข่โทนอบอุ่นตัดกับขอบทอง) */
+        .minigame-card {
+            background-color: #F5E4D0;
+            background-repeat: repeat;
+            background-size: 128px 128px;
+            border: 2px solid #D97706;
+            box-shadow: 0 10px 26px -4px rgba(14, 116, 144, 0.30), 0 0 0 3px rgba(254, 240, 138, 0.55);
+            transition: opacity 0.22s ease, transform 0.24s cubic-bezier(0.34, 1.56, 0.64, 1);
+            will-change: transform, opacity;
+        }
+
+        /* 7 โซนสมมาตรของหลอดมินิเกม: x2 | x5 | x7 | x10 | x7 | x5 | x2 */
+        .mg-zone {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Prompt', 'Kanit', sans-serif;
+            font-weight: 800;
+            transition: filter 0.15s ease, transform 0.15s ease;
+            position: relative;
+        }
+        .mg-zone-x2 {
+            background: linear-gradient(180deg, #64748B 0%, #334155 100%);
+            color: #F1F5F9;
+        }
+        .mg-zone-x5 {
+            background: linear-gradient(180deg, #FB923C 0%, #EA580C 100%);
+            color: #FFF7ED;
+            border-left: 1px solid rgba(255, 255, 255, 0.35);
+            border-right: 1px solid rgba(255, 255, 255, 0.35);
+        }
+        .mg-zone-x7 {
+            background: linear-gradient(180deg, #34D399 0%, #059669 100%);
+            color: #ECFDF5;
+            border-left: 1px solid rgba(255, 255, 255, 0.45);
+            border-right: 1px solid rgba(255, 255, 255, 0.45);
+        }
+        .mg-zone-x10 {
+            background: linear-gradient(180deg, #FDE047 0%, #F59E0B 48%, #E11D48 100%);
+            color: #FFFFFF;
+            text-shadow: 0 1px 2px rgba(127, 29, 29, 0.85);
+            border-left: 1.5px solid #FEF9C3;
+            border-right: 1.5px solid #FEF9C3;
+        }
+        .mg-zone-winner {
+            filter: brightness(1.26) saturate(1.25);
+            z-index: 5;
+            box-shadow: inset 0 0 0 2px #FFFFFF;
+        }
+
+        /* เข็มชี้มินิเกมที่วิ่งด้วย GPU translate3d */
+        #minigame-needle {
+            position: absolute;
+            top: -5px;
+            bottom: -5px;
+            left: 0;
+            width: 6px;
+            background: #FFFFFF;
+            border: 1.5px solid #0F172A;
+            border-radius: 9999px;
+            box-shadow: 0 2px 6px rgba(15, 23, 42, 0.45);
+            pointer-events: none;
+            z-index: 10;
+            will-change: transform;
+            transform: translate3d(0, 0, 0);
+        }
+
+        /* ปุ่มไข่หลัก: เร่งความเร็วด้วย GPU Compositor เต็มรูปแบบ */
         #egg-stage-btn {
+            position: relative;
             background: transparent;
             border: none;
             outline: none;
             padding: 0;
+            touch-action: manipulation;
             will-change: transform;
-            transform-origin: center bottom;
+            transform-origin: 50% 82%;
+            backface-visibility: hidden;
+            transform: translate3d(0, 0, 0);
         }
 
-        /* รูปภาพไข่ตัวจริงของเล่น: เงาเกาะตามขอบรูป PNG โปร่งใสโดยตรง */
+        /* รูปภาพไข่ทั้งสองสถานะซ้อนทับกันแบบ Absolute เพื่อสลับด้วย GPU Opacity 0ms */
         .custom-egg-sprite {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            pointer-events: none;
             user-select: none;
             -webkit-user-select: none;
             -webkit-user-drag: none;
-            pointer-events: none;
-            object-fit: contain;
-            filter: drop-shadow(0 18px 24px rgba(14, 116, 144, 0.28)) drop-shadow(0 4px 10px rgba(75, 50, 25, 0.20));
             will-change: opacity;
+            backface-visibility: hidden;
+            transform: translateZ(0);
         }
 
-        /* แอนิเมชันไข่ทองคำโบนัสลอยผ่านท้องฟ้า (ใช้รูปไข่จริง + ฟิลเตอร์สีทองเรืองแสง) */
-        @keyframes goldenDriftBob {
-            0%, 100% { transform: translateY(-8px) rotate(-7deg); }
-            50% { transform: translateY(8px) rotate(7deg); }
-        }
-        .golden-bonus-sprite {
-            animation: goldenDriftBob 1.7s ease-in-out infinite;
-            filter: sepia(1) saturate(5) brightness(1.2) drop-shadow(0 0 14px rgba(250, 204, 21, 0.92));
+        /* เงาพื้นใต้ตัวไข่ */
+        .egg-ground-shadow {
+            background: radial-gradient(ellipse at center, rgba(14, 116, 144, 0.30) 0%, rgba(14, 116, 144, 0.10) 48%, rgba(14, 116, 144, 0) 74%);
+            pointer-events: none;
         }
 
-        /* ปรับแต่ง Scrollbar ของรายการอัพเกรดให้เข้าธีมเปลือกไข่ */
+        /* ออร่าเรืองแสงหลังไข่ */
+        #egg-aura {
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.90) 0%, rgba(253, 224, 71, 0.52) 42%, rgba(56, 189, 248, 0) 72%);
+            will-change: transform, opacity;
+            transform: translateZ(0);
+        }
+
+        /* แอนิเมชันรัศมีแสงหมุนด้วย GPU */
+        @keyframes spinSlow {
+            from { transform: rotate(0deg) translateZ(0); }
+            to { transform: rotate(360deg) translateZ(0); }
+        }
+        .aura-spin {
+            animation: spinSlow 16s linear infinite;
+            will-change: transform;
+        }
+
+        /* แอนิเมชันไข่ทองคำโบนัส (ใช้ GPU transform เท่านั้น) */
+        .golden-bonus-btn {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 30;
+            pointer-events: auto;
+            touch-action: manipulation;
+            will-change: transform;
+            backface-visibility: hidden;
+        }
+
+        .golden-egg-glow {
+            background: radial-gradient(circle, rgba(253, 224, 71, 0.85) 0%, rgba(245, 158, 11, 0.35) 50%, rgba(245, 158, 11, 0) 74%);
+        }
+
+        /* Scrollbar ของร้านค้าอัพเกรด */
+        .eggshell-scroll {
+            contain: content;
+        }
         .eggshell-scroll::-webkit-scrollbar {
-            width: 8px;
+            width: 7px;
         }
         .eggshell-scroll::-webkit-scrollbar-track {
-            background: rgba(186, 143, 96, 0.18);
+            background: rgba(186, 143, 96, 0.16);
             border-radius: 9999px;
         }
         .eggshell-scroll::-webkit-scrollbar-thumb {
             background: #BA8F60;
             border-radius: 9999px;
-            border: 2px solid #F7E8D4;
-        }
-        .eggshell-scroll::-webkit-scrollbar-thumb:hover {
-            background: #946B40;
-        }
-
-        /* แอนิเมชันออร่าหมุนรอบไข่เมื่อคอมโบสูง */
-        @keyframes spinSlow {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        .aura-spin {
-            animation: spinSlow 14s linear infinite;
         }
 
         /* ปุ่มสไตล์เกมนูนมีมิติ */
         .game-pill-btn {
             background: linear-gradient(180deg, #FFFDF9 0%, #F3DFC6 100%);
             border: 1.5px solid #BA8F60;
-            box-shadow: 0 3px 0 #9E7449, 0 5px 10px rgba(75, 50, 25, 0.15);
-            transition: all 0.12s ease;
-        }
-        .game-pill-btn:hover {
-            filter: brightness(1.03);
-            transform: translateY(-1px);
+            box-shadow: 0 2px 0 #9E7449;
+            transition: transform 0.1s ease;
         }
         .game-pill-btn:active {
             transform: translateY(2px);
-            box-shadow: 0 1px 0 #9E7449;
+            box-shadow: 0 0 0 #9E7449;
         }
         .game-pill-btn.active-mode {
             background: linear-gradient(180deg, #FBBF24 0%, #F59E0B 100%);
             border-color: #92400E;
             color: #451A03;
-            box-shadow: 0 3px 0 #92400E, 0 5px 12px rgba(245, 158, 11, 0.35);
+            box-shadow: 0 2px 0 #92400E;
+        }
+
+        /* แท็บสลับหน้าร้านค้าอัพเกรดและระบบจุติ */
+        .panel-tab-btn {
+            background: rgba(255, 252, 247, 0.55);
+            border: 1.5px solid rgba(186, 143, 96, 0.55);
+            color: #6E4D2B;
+            transition: transform 0.1s ease, background-color 0.15s ease, border-color 0.15s ease;
+        }
+        .panel-tab-btn.active-tab {
+            background: linear-gradient(180deg, #FFFDF9 0%, #F5E4D0 100%);
+            border-color: #946B40;
+            color: #4B3219;
+            box-shadow: 0 2px 6px rgba(110, 77, 43, 0.14);
+        }
+        .panel-tab-btn.rebirth-tab-active {
+            background: linear-gradient(180deg, #EDE9FE 0%, #DDD6FE 100%);
+            border-color: #7C3AED;
+            color: #4C1D95;
+            box-shadow: 0 2px 8px rgba(124, 58, 237, 0.22);
+        }
+
+        /* การ์ดระบบจุติและสกิลผลึกจุติ */
+        .rebirth-hero-card {
+            background: linear-gradient(145deg, #2E1065 0%, #4C1D95 52%, #6D28D9 100%);
+            border: 2px solid #A78BFA;
+            box-shadow: 0 8px 20px rgba(76, 29, 149, 0.28);
+        }
+
+        .rebirth-skill-card {
+            background-color: #F5E4D0;
+            background-repeat: repeat;
+            background-size: 128px 128px;
+            background-image: linear-gradient(180deg, rgba(245, 243, 255, 0.88) 0%, rgba(233, 208, 179, 0.72) 100%);
+            border: 1.5px solid #8B5CF6;
+            box-shadow: 0 3px 8px rgba(76, 29, 149, 0.10);
+            transition: transform 0.12s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.12s ease;
+            will-change: transform;
+        }
+        .rebirth-skill-card.affordable:hover {
+            transform: translateY(-2px);
+            border-color: #6D28D9;
+        }
+        .rebirth-skill-card.affordable:active {
+            transform: translateY(1px) scale(0.985);
+        }
+        .rebirth-skill-card.locked {
+            opacity: 0.72;
+            border-color: #BA8F60;
         }
 
         /* แอนิเมชันวงแหวนแฟลชเมื่อเลื่อนระดับ */
         @keyframes milestoneBurstFlash {
-            0% { opacity: 0.85; transform: scale(0.75); }
-            100% { opacity: 0; transform: scale(2.25); }
+            0% { opacity: 0.85; transform: scale3d(0.75, 0.75, 1); }
+            100% { opacity: 0; transform: scale3d(2.2, 2.2, 1); }
         }
         .milestone-flash-anim {
-            animation: milestoneBurstFlash 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation: milestoneBurstFlash 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
     </style>
 </head>
 <body class="relative min-h-screen flex flex-col">
 
-    <!-- SVG Texture Filter สำหรับผิวรูพรุนและจุดกระเปลือกไข่ธรรมชาติบน UI อัพเกรด -->
-    <svg class="hidden" width="0" height="0" aria-hidden="true">
-        <defs>
-            <filter id="eggshell-pore-noise" x="0%" y="0%" width="100%" height="100%">
-                <feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="3" seed="27" result="noise"/>
-                <feColorMatrix type="matrix" values="
-                    0 0 0 0 0.42
-                    0 0 0 0 0.26
-                    0 0 0 0 0.13
-                    0 0 0 0.13 0" in="noise" result="pores"/>
-            </filter>
-        </defs>
-    </svg>
-
     <!-- แสงบรรยากาศท้องฟ้าสีฟ้า -->
     <div class="sky-atmosphere"></div>
 
-    <!-- Canvas พื้นหลัง: รูปไข่จริงของผู้เล่นแบบจางๆ ค่อยๆ หมุนและตกลงมา -->
+    <!-- Canvas พื้นหลัง: รูปไข่จริงแบบย่อส่วนที่ตกลงมาอย่างนุ่มนวล (สูงสุด 16 ชิ้น) -->
     <canvas id="bg-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-0"></canvas>
 
-    <!-- Canvas ด้านหน้า: เอฟเฟกต์คลื่นกระแทก ประกายแสง และตัวเลขแต้มลอยขึ้น -->
+    <!-- Canvas ด้านหน้า: Object-Pooled วงคลื่นกระแทก ประกายดาว และตัวเลขแต้มลอยขึ้น -->
     <canvas id="fx-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-30"></canvas>
 
-    <!-- เลเยอร์สำหรับอีเวนต์ไข่ทองคำโบนัสลอยผ่านจอ -->
+    <!-- เลเยอร์สำหรับอีเวนต์ไข่ทองคำโบนัสลอยผ่านท้องฟ้า -->
     <div id="golden-bonus-layer" class="fixed inset-0 pointer-events-none z-30 overflow-hidden"></div>
 
-    <!-- แถบส่วนหัว (Glassmorphic Sky HUD Bar) -->
+    <!-- แถบส่วนหัว (Header HUD) -->
     <header class="relative z-20 w-full max-w-7xl mx-auto px-4 pt-3 pb-2 flex flex-wrap items-center justify-between gap-2">
-        <div class="flex items-center gap-2.5 bg-white/75 backdrop-blur-md px-3.5 py-2 rounded-2xl border border-white/85 shadow-sm">
-            <!-- ไอคอนขนาดเล็กใช้รูปไข่จริงของผู้เล่น -->
+        <div class="flex items-center gap-2.5 bg-white/85 px-3.5 py-2 rounded-2xl border border-white shadow-sm">
             <img src="https://raw.githubusercontent.com/memspopcat9472/Egg-Clicker/refs/heads/main/Untitled2_20261122202055.png"
                  alt="โลโก้ไข่"
-                 class="w-7 h-8 object-contain drop-shadow-xs select-none pointer-events-none" />
+                 class="w-7 h-8 object-contain select-none pointer-events-none" />
             <div>
                 <h1 class="font-display font-extrabold text-lg sm:text-xl text-sky-950 leading-tight tracking-tight">
                     EGG CLICKER <span class="text-amber-600">ไข่หรรษา</span>
                 </h1>
-                <p class="text-[11px] sm:text-xs text-sky-700/85 font-medium">คลิกรัวสะสมพลัง เร่งคอมโบ Fever และพัฒนาฟาร์มไข่!</p>
+                <p class="text-[11px] sm:text-xs text-sky-800/80 font-medium">คลิกรัวสะสมพลัง เร่งคอมโบ Fever และพัฒนาฟาร์มไข่!</p>
             </div>
         </div>
 
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2">
+            <!-- ป้ายนับถอยหลังมินิเกม 40 วินาที -->
+            <div id="hud-minigame-badge" class="bg-amber-50/95 text-amber-950 px-3 py-1.5 rounded-xl border border-amber-300 text-xs font-bold flex items-center gap-1.5 shadow-sm tabular-nums">
+                <span>🎯</span>
+                <span id="hud-minigame-timer">มินิเกมใน: 40s</span>
+            </div>
+
+            <!-- ป้ายแสดงสถานะการจุติและผลึกจุติ -->
+            <button id="btn-header-rebirth" type="button" class="bg-violet-950/90 hover:bg-violet-900 text-violet-100 px-3 py-1.5 rounded-xl border border-violet-400/60 text-xs font-bold flex items-center gap-2 shadow-sm cursor-pointer transition-transform active:scale-95" title="เปิดหน้าต่างระบบจุติ (Rebirth)">
+                <span>💎 <span id="header-crystals" class="text-amber-300 tabular-nums">0</span></span>
+                <span class="text-violet-400">|</span>
+                <span>จุติ <span id="header-rebirth-count" class="text-cyan-300 tabular-nums">0</span></span>
+            </button>
+
             <!-- สถานะบันทึกอัตโนมัติ -->
-            <div class="hidden sm:flex items-center gap-1.5 bg-white/75 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/85 text-xs font-medium text-sky-900 shadow-sm">
-                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <div class="hidden xl:flex items-center gap-1.5 bg-white/85 px-3 py-1.5 rounded-xl border border-white text-xs font-medium text-sky-900 shadow-sm">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
                 <span id="save-status-text">บันทึกอัตโนมัติพร้อม</span>
             </div>
 
@@ -262,81 +384,135 @@
             </button>
 
             <!-- ปุ่มรีเซ็ตข้อมูล -->
-            <button id="btn-reset-open" type="button" class="game-pill-btn px-3 py-2 rounded-xl text-sm font-semibold text-rose-700 flex items-center gap-1 cursor-pointer" title="เริ่มเกมใหม่">
+            <button id="btn-reset-open" type="button" class="game-pill-btn px-3 py-2 rounded-xl text-sm font-semibold text-rose-700 flex items-center gap-1 cursor-pointer" title="เริ่มเกมใหม่ทั้งหมด">
                 <span>🔄</span>
                 <span class="hidden md:inline">เริ่มใหม่</span>
             </button>
         </div>
     </header>
 
-    <!-- พื้นที่หลักของเกม (ซ้าย: เวทีตัวละครไข่จริง / ขวา: ร้านค้าอัพเกรดเปลือกไข่) -->
+    <!-- พื้นที่หลักของเกม -->
     <main class="relative z-10 flex-1 w-full max-w-7xl mx-auto px-4 pb-6 pt-1 grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
 
-        <!-- ฝั่งซ้าย: เวทีหลักและตัวละครไข่จริงของผู้เล่น (7 คอลัมน์บนจอใหญ่) -->
-        <section class="lg:col-span-7 flex flex-col items-center justify-between py-2 sm:py-3 relative">
+        <!-- ฝั่งซ้าย: เวทีหลัก ตัวละครไข่จริง และมินิเกมจับจังหวะตัวคูณ (7 คอลัมน์บนจอใหญ่) -->
+        <section class="lg:col-span-7 flex flex-col items-center justify-between py-1 sm:py-2 relative">
 
             <!-- แผงแสดงจำนวนไข่และค่าพลังหลัก -->
-            <div class="w-full max-w-lg flex flex-col items-center gap-2.5">
-                <div class="w-full bg-white/80 backdrop-blur-md border-2 border-white rounded-3xl px-5 py-3.5 shadow-lg shadow-sky-900/10 text-center relative overflow-hidden">
-                    <div class="text-xs sm:text-sm font-semibold text-sky-700 uppercase tracking-wider mb-0.5">จำนวนไข่สะสมทั้งหมด</div>
+            <div class="w-full max-w-lg flex flex-col items-center gap-2">
+                <div class="w-full bg-white/90 border-2 border-white rounded-3xl px-5 py-3 shadow-md text-center relative overflow-hidden">
+                    <div class="flex items-center justify-center gap-2 mb-0.5">
+                        <span class="text-xs sm:text-sm font-semibold text-sky-700 uppercase tracking-wider">จำนวนไข่คงเหลือปัจจุบัน</span>
+                        <span id="ui-ascension-badge" class="text-[11px] font-bold bg-violet-100 text-violet-800 border border-violet-300 px-2 py-0.5 rounded-full tabular-nums">
+                            โบนัสจุติ x1.00
+                        </span>
+                    </div>
                     <div class="flex items-center justify-center gap-2.5">
                         <img src="https://raw.githubusercontent.com/memspopcat9472/Egg-Clicker/refs/heads/main/Untitled2_20261122202055.png"
                              alt="ไอคอนจำนวนไข่"
-                             class="w-8 h-10 sm:w-9 sm:h-11 object-contain drop-shadow-sm select-none pointer-events-none" />
+                             class="w-8 h-10 sm:w-9 sm:h-11 object-contain select-none pointer-events-none" />
                         <span id="ui-eggs" class="font-display font-extrabold text-3xl sm:text-5xl text-amber-900 tracking-tight tabular-nums">0</span>
                     </div>
 
                     <!-- แถบสถิติย่อย EPS / EPC / คริติคอล -->
-                    <div class="mt-2.5 pt-2.5 border-t border-sky-200/80 grid grid-cols-3 gap-2 text-xs sm:text-sm">
-                        <div class="bg-sky-50/90 rounded-xl py-1.5 px-2 border border-sky-100">
+                    <div class="mt-2 pt-2 border-t border-sky-200/80 grid grid-cols-3 gap-2 text-xs sm:text-sm">
+                        <div class="bg-sky-50 rounded-xl py-1.5 px-2 border border-sky-100">
                             <div class="text-[11px] text-sky-600 font-medium">ผลิตอัตโนมัติ (EPS)</div>
                             <div class="font-bold text-sky-900 tabular-nums"><span id="ui-eps">0</span> /วิ</div>
                         </div>
-                        <div class="bg-amber-50/90 rounded-xl py-1.5 px-2 border border-amber-100">
+                        <div class="bg-amber-50 rounded-xl py-1.5 px-2 border border-amber-100">
                             <div class="text-[11px] text-amber-700 font-medium">พลังคลิก (EPC)</div>
                             <div class="font-bold text-amber-900 tabular-nums">+<span id="ui-epc">1</span></div>
                         </div>
-                        <div class="bg-rose-50/90 rounded-xl py-1.5 px-2 border border-rose-100">
+                        <div class="bg-rose-50 rounded-xl py-1.5 px-2 border border-rose-100">
                             <div class="text-[11px] text-rose-600 font-medium">โอกาสคริติคอล</div>
                             <div class="font-bold text-rose-800 tabular-nums"><span id="ui-crit">5</span>% (x<span id="ui-crit-mult">3</span>)</div>
                         </div>
                     </div>
                 </div>
 
-                <!-- แถบระดับขั้นของไข่ (Milestone Tier) และหลอดความคืบหน้า -->
-                <div class="w-full bg-white/75 backdrop-blur-md border border-white/90 rounded-2xl px-4 py-2.5 shadow-sm">
-                    <div class="flex items-center justify-between text-xs sm:text-sm font-bold mb-1.5">
+                <!-- แถบระดับวิวัฒนาการไข่ (Evolution Rank) และหลอดความคืบหน้า -->
+                <div class="w-full bg-white/85 border border-white rounded-2xl px-4 py-2 shadow-sm">
+                    <div class="flex items-center justify-between text-xs sm:text-sm font-bold mb-1">
                         <div class="flex items-center gap-1.5 text-sky-950">
-                            <span id="ui-tier-badge" class="bg-amber-500 text-white text-[11px] px-2 py-0.5 rounded-lg shadow-2xs">ระดับ 1</span>
-                            <span id="ui-tier-name">ไข่เริ่มต้นแห่งท้องฟ้า</span>
+                            <span id="ui-tier-badge" class="bg-amber-500 text-white text-[11px] px-2 py-0.5 rounded-lg">วิวัฒนาการ 1</span>
+                            <span id="ui-tier-name">ไข่น้อยเริ่มต้น</span>
                         </div>
                         <div class="text-amber-700 font-semibold tabular-nums">
-                            เป้าหมาย <span id="ui-tier-pct">0</span>%
+                            วิวัฒนาการถัดไป <span id="ui-tier-pct">0</span>%
                         </div>
                     </div>
-                    <div class="w-full h-3 bg-sky-950/10 rounded-full overflow-hidden p-0.5 border border-sky-200/70">
-                        <div id="ui-tier-bar" class="h-full rounded-full bg-gradient-to-r from-sky-400 via-amber-400 to-orange-500 transition-all duration-100" style="width: 0%;"></div>
+                    <div class="w-full h-2.5 bg-sky-950/10 rounded-full overflow-hidden p-0.5 border border-sky-200/70">
+                        <div id="ui-tier-bar" class="h-full rounded-full bg-gradient-to-r from-sky-400 via-amber-400 to-orange-500" style="width: 0%;"></div>
                     </div>
-                    <div class="flex justify-between items-center mt-1 text-[11px] text-sky-800/85">
-                        <span>รางวัลเลื่อนระดับ: <strong id="ui-tier-bonus" class="text-amber-700">+30</strong></span>
-                        <span class="tabular-nums">คลิกสะสม: <strong id="ui-total-clicks" class="text-sky-900">0</strong> ครั้ง</span>
+                    <div class="flex justify-between items-center mt-1 text-[11px] text-sky-800/85 gap-2">
+                        <span class="truncate">เป้าหมาย: <strong id="ui-tier-goal" class="text-sky-950 tabular-nums">0 / 1,000</strong></span>
+                        <span class="shrink-0 tabular-nums">คลิก: <strong id="ui-total-clicks" class="text-sky-900">0</strong> • รอบนี้: <strong id="ui-run-eggs" class="text-violet-800">0</strong></span>
+                    </div>
+                </div>
+
+                <!-- ================================================================
+                     มินิเกมจับจังหวะตัวคูณทุกๆ 40 วินาที (x2 | x5 | x7 | x10 | x7 | x5 | x2)
+                     วางเหนือเวทีไข่เพื่อไม่บังการกดไข่หลัก และรองรับทั้งคลิกและปุ่ม Space
+                     ================================================================ -->
+                <div id="minigame-card"
+                     class="minigame-card hidden w-full rounded-2xl p-3 sm:p-3.5 relative z-20 cursor-pointer"
+                     role="region"
+                     aria-label="มินิเกมจับจังหวะตัวคูณโบนัส">
+                    <div class="flex flex-wrap items-center justify-between gap-1.5 mb-2">
+                        <div class="flex items-center gap-1.5">
+                            <span class="text-base sm:text-lg">🎯</span>
+                            <span class="font-display font-extrabold text-xs sm:text-sm text-eggshell-800">มินิเกมจับจังหวะตัวคูณ!</span>
+                        </div>
+                        <div class="flex items-center gap-1.5 text-[11px] font-bold">
+                            <span id="mg-base-label" class="bg-amber-100 text-amber-900 border border-amber-400 px-2 py-0.5 rounded-lg tabular-nums">
+                                ฐาน 10 วิ: +20 ฟอง
+                            </span>
+                            <span id="mg-time-left" class="bg-rose-100 text-rose-800 border border-rose-300 px-2 py-0.5 rounded-lg tabular-nums">
+                                12.0s
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- หลอดตัวคูณสมมาตร 7 โซน (20.5% | 15% | 10% | 9% | 10% | 15% | 20.5%) -->
+                    <div id="minigame-track" class="relative w-full h-9 sm:h-10 rounded-xl overflow-visible border-2 border-eggshell-800 shadow-inner bg-slate-800">
+                        <div class="w-full h-full rounded-[10px] overflow-hidden flex text-[11px] sm:text-xs tracking-tight">
+                            <div data-mg-zone="0" class="mg-zone mg-zone-x2" style="width: 20.5%;">x2</div>
+                            <div data-mg-zone="1" class="mg-zone mg-zone-x5" style="width: 15.0%;">x5</div>
+                            <div data-mg-zone="2" class="mg-zone mg-zone-x7" style="width: 10.0%;">x7</div>
+                            <div data-mg-zone="3" class="mg-zone mg-zone-x10" style="width: 9.0%;">x10</div>
+                            <div data-mg-zone="4" class="mg-zone mg-zone-x7" style="width: 10.0%;">x7</div>
+                            <div data-mg-zone="5" class="mg-zone mg-zone-x5" style="width: 15.0%;">x5</div>
+                            <div data-mg-zone="6" class="mg-zone mg-zone-x2" style="width: 20.5%;">x2</div>
+                        </div>
+                        <!-- เข็มชี้เคลื่อนที่ด้วย GPU translate3d -->
+                        <div id="minigame-needle"></div>
+                    </div>
+
+                    <!-- แถบปุ่มกดหยุดเข็มหรือแสดงผลรางวัล -->
+                    <div class="mt-2 flex items-center justify-between gap-2">
+                        <span id="mg-status-text" class="text-[11px] sm:text-xs font-semibold text-eggshell-700 truncate">
+                            แตะที่แถบ กดปุ่ม STOP หรือกด Spacebar!
+                        </span>
+                        <button id="btn-minigame-stop"
+                                type="button"
+                                class="shrink-0 px-3.5 py-1.5 rounded-xl font-display font-extrabold text-xs sm:text-sm text-white bg-gradient-to-b from-rose-500 to-rose-600 border border-rose-900 shadow active:translate-y-0.5 cursor-pointer">
+                            หยุดเข็ม! (STOP)
+                        </button>
                     </div>
                 </div>
             </div>
 
-            <!-- เวทีตัวละครไข่ตรงกลาง (โปร่งใส ไร้กรอบ ไร้รูปทรงไข่เก่า ใช้รูป PNG ของผู้ใช้ล้วนๆ) -->
-            <div class="relative flex-1 w-full flex flex-col items-center justify-center my-2 sm:my-3 min-h-[300px] sm:min-h-[360px]">
+            <!-- เวทีตัวละครไข่ตรงกลาง -->
+            <div class="relative flex-1 w-full flex flex-col items-center justify-center my-1 sm:my-2 min-h-[260px] sm:min-h-[330px]">
 
-                <!-- ออร่าเรืองแสงสีทอง-ฟ้าด้านหลังไข่ (ขยายและสว่างขึ้นตามเกจ Fever) -->
-                <div id="egg-aura" class="absolute w-64 h-64 sm:w-84 sm:h-84 rounded-full pointer-events-none transition-opacity duration-150 opacity-35"
-                     style="background: radial-gradient(circle, rgba(255,255,255,0.95) 0%, rgba(253,224,71,0.58) 40%, rgba(56,189,248,0.22) 64%, rgba(56,189,248,0) 76%);">
-                </div>
+                <!-- ออร่าเรืองแสงด้านหลังไข่ -->
+                <div id="egg-aura" class="absolute w-64 h-64 sm:w-80 sm:h-80 rounded-full pointer-events-none opacity-35"></div>
 
                 <!-- รัศมีแสงหมุนรอบไข่เมื่อคอมโบสูง -->
-                <svg id="egg-sunburst" class="absolute w-72 h-72 sm:w-96 sm:h-96 pointer-events-none aura-spin opacity-0 transition-opacity duration-300" viewBox="0 0 200 200" aria-hidden="true">
+                <svg id="egg-sunburst" class="absolute w-72 h-72 sm:w-96 sm:h-96 pointer-events-none aura-spin opacity-0" viewBox="0 0 200 200" aria-hidden="true">
                     <defs>
                         <radialGradient id="sunRayGrad" cx="50%" cy="50%" r="50%">
-                            <stop offset="0%" stop-color="#FEF08A" stop-opacity="0.75"/>
+                            <stop offset="0%" stop-color="#FEF08A" stop-opacity="0.72"/>
                             <stop offset="100%" stop-color="#38BDF8" stop-opacity="0"/>
                         </radialGradient>
                     </defs>
@@ -355,95 +531,218 @@
                 <!-- วงแหวนแฟลชเมื่อปลดล็อกระดับใหม่ -->
                 <div id="milestone-burst-ring" class="absolute w-56 h-56 rounded-full border-8 border-amber-300 pointer-events-none opacity-0"></div>
 
-                <!-- ปุ่มตัวละครไข่โปร่งใส ไร้กรอบ ควบคุมด้วย 2D Spring Physics -->
+                <!-- เงาพื้นนุ่มนวลใต้ตัวไข่ -->
+                <div class="egg-ground-shadow absolute translate-y-26 sm:translate-y-34 w-44 h-10 sm:w-52 sm:h-12 rounded-full"></div>
+
+                <!-- ปุ่มตัวละครไข่โปร่งใส ไร้กรอบ ซ้อนภาพสองสถานะแบบ Absolute เพื่อสลับทันที 0ms -->
                 <button id="egg-stage-btn"
                         type="button"
-                        class="relative z-10 w-56 h-68 sm:w-68 sm:h-84 cursor-pointer touch-manipulation grid place-items-center"
+                        class="relative z-10 w-48 h-60 sm:w-60 sm:h-76 cursor-pointer"
                         aria-label="คลิกที่ไข่เพื่อเก็บแต้มและสะสมคอมโบ">
                     <!-- รูปสถานะปกติ (Idle State) -->
                     <img id="egg-sprite-idle"
                          src="https://raw.githubusercontent.com/memspopcat9472/Egg-Clicker/refs/heads/main/Untitled2_20261122202055.png"
                          alt="ไข่สถานะปกติ"
                          draggable="false"
-                         decoding="sync"
-                         loading="eager"
-                         class="custom-egg-sprite col-start-1 row-start-1 w-52 h-64 sm:w-64 sm:h-80 opacity-100" />
+                         decoding="async"
+                         class="custom-egg-sprite"
+                         style="opacity: 1;" />
 
-                    <!-- รูปสถานะตอนกด / หลังกด (Pressed State) ซ้อนทับตำแหน่งเดียวกันเพื่อสลับ 0ms ไม่มีกระพริบ -->
+                    <!-- รูปสถานะตอนกด (Pressed State) -->
                     <img id="egg-sprite-pressed"
                          src="https://raw.githubusercontent.com/memspopcat9472/Egg-Clicker/refs/heads/main/IMG_0818.png"
                          alt="ไข่สถานะตอนกด"
                          draggable="false"
-                         decoding="sync"
-                         loading="eager"
-                         class="custom-egg-sprite col-start-1 row-start-1 w-52 h-64 sm:w-64 sm:h-80 opacity-0" />
+                         decoding="async"
+                         class="custom-egg-sprite"
+                         style="opacity: 0;" />
                 </button>
 
                 <!-- หลอดวัดคอมโบและโหมด FEVER ใต้ตัวไข่ -->
-                <div class="relative z-10 w-full max-w-xs mt-2 bg-white/80 backdrop-blur-md border border-white/90 rounded-2xl px-3.5 py-2 shadow-sm">
+                <div class="relative z-10 w-full max-w-xs mt-2.5 bg-white/85 border border-white rounded-2xl px-3.5 py-2 shadow-sm">
                     <div class="flex items-center justify-between text-xs font-bold mb-1">
                         <span id="ui-fever-label" class="text-sky-900">⚡ พลังคอมโบ FEVER</span>
                         <span id="ui-combo-mult" class="text-orange-600 tabular-nums">x1.0 (0 คอมโบ)</span>
                     </div>
                     <div class="w-full h-2.5 bg-sky-950/10 rounded-full overflow-hidden p-0.5">
-                        <div id="ui-fever-bar" class="h-full rounded-full bg-gradient-to-r from-cyan-400 via-amber-400 to-rose-500 transition-all duration-75" style="width: 0%;"></div>
+                        <div id="ui-fever-bar" class="h-full rounded-full bg-gradient-to-r from-cyan-400 via-amber-400 to-rose-500" style="width: 0%;"></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ฝั่งขวา: แผงอัพเกรดสีเนื้อไข่พร้อม Texture เปลือกไข่ธรรมชาติ (5 คอลัมน์บนจอใหญ่) -->
-        <aside class="lg:col-span-5 eggshell-panel rounded-3xl p-4 sm:p-5 flex flex-col max-h-[650px] lg:max-h-[calc(100vh-102px)] overflow-hidden">
-            <!-- เลเยอร์ SVG Noise Texture ผิวเปลือกไข่ -->
-            <div class="absolute inset-0 pointer-events-none rounded-3xl opacity-85" style="filter: url(#eggshell-pore-noise);"></div>
+        <!-- ฝั่งขวา: แผงอัพเกรดสีเนื้อไข่ (#F5E4D0 / #E9D0B3) พร้อมลายเปลือกไข่จาก Offscreen Canvas -->
+        <aside id="upgrade-panel" class="lg:col-span-5 eggshell-panel rounded-3xl p-4 sm:p-5 flex flex-col max-h-[680px] lg:max-h-[calc(100vh-98px)] overflow-hidden">
 
-            <!-- ส่วนหัวแผงอัพเกรด + ปุ่มเลือกจำนวนซื้อ x1 / x10 / MAX -->
-            <div class="relative z-10 flex flex-wrap items-center justify-between gap-2 pb-3 border-b-2 border-eggshell-500/35">
-                <div class="flex items-center gap-2">
-                    <span class="w-9 h-9 rounded-xl bg-amber-500/20 border border-eggshell-500 flex items-center justify-center text-lg shadow-inner">🛠️</span>
+            <!-- แถบเลือกแท็บหลัก: อัปเกรดปกติ vs ระบบจุติ (Rebirth) -->
+            <div class="relative z-10 grid grid-cols-2 gap-2 pb-3 border-b-2 border-eggshell-500/35">
+                <button id="tab-btn-upgrades" type="button" class="panel-tab-btn active-tab py-2 px-3 rounded-2xl font-display font-bold text-sm sm:text-base flex items-center justify-center gap-2 cursor-pointer">
+                    <span>🛠️</span>
+                    <span>อัปเกรด</span>
+                </button>
+                <button id="tab-btn-rebirth" type="button" class="panel-tab-btn py-2 px-3 rounded-2xl font-display font-bold text-sm sm:text-base flex items-center justify-center gap-2 cursor-pointer relative">
+                    <span>🔮</span>
+                    <span>จุติ (Rebirth)</span>
+                    <span id="rebirth-ready-dot" class="hidden w-2.5 h-2.5 rounded-full bg-violet-600 ring-2 ring-white animate-pulse"></span>
+                </button>
+            </div>
+
+            <!-- มุมมองที่ 1: ร้านค้าอัปเกรดปกติ -->
+            <div id="tab-content-upgrades" class="relative z-10 flex-1 flex flex-col min-h-0 pt-3">
+                <div class="flex flex-wrap items-center justify-between gap-2 pb-2.5">
                     <div>
-                        <h2 class="font-display font-bold text-lg sm:text-xl text-eggshell-800 leading-none">ร้านค้าอัพเกรด</h2>
-                        <p class="text-xs text-eggshell-700 mt-0.5">เสริมพลังคลิกและฟาร์มอัตโนมัติ</p>
+                        <h2 class="font-display font-bold text-base sm:text-lg text-eggshell-800 leading-none">โรงพัฒนาฟาร์มไข่</h2>
+                        <p class="text-[11px] sm:text-xs text-eggshell-700 mt-0.5">สะสมไข่ครบ 1.00 M เพื่อปลดล็อกการจุติ</p>
+                    </div>
+
+                    <!-- ตัวเลือกจำนวนการซื้อ x1 / x10 / MAX -->
+                    <div class="flex items-center gap-1 bg-eggshell-200 p-1 rounded-xl border border-eggshell-500/50">
+                        <button id="buy-mode-1" type="button" class="game-pill-btn active-mode px-2.5 py-1 rounded-lg text-xs font-bold cursor-pointer">
+                            x1
+                        </button>
+                        <button id="buy-mode-10" type="button" class="game-pill-btn px-2.5 py-1 rounded-lg text-xs font-bold text-eggshell-800 cursor-pointer">
+                            x10
+                        </button>
+                        <button id="buy-mode-max" type="button" class="game-pill-btn px-2.5 py-1 rounded-lg text-xs font-bold text-eggshell-800 cursor-pointer">
+                            MAX
+                        </button>
                     </div>
                 </div>
 
-                <!-- ตัวเลือกจำนวนการซื้อ x1 / x10 / MAX -->
-                <div class="flex items-center gap-1 bg-eggshell-300/75 p-1 rounded-xl border border-eggshell-500/50">
-                    <button id="buy-mode-1" type="button" class="game-pill-btn active-mode px-2.5 py-1 rounded-lg text-xs font-bold cursor-pointer">
-                        x1
-                    </button>
-                    <button id="buy-mode-10" type="button" class="game-pill-btn px-2.5 py-1 rounded-lg text-xs font-bold text-eggshell-800 cursor-pointer">
-                        x10
-                    </button>
-                    <button id="buy-mode-max" type="button" class="game-pill-btn px-2.5 py-1 rounded-lg text-xs font-bold text-eggshell-800 cursor-pointer">
-                        MAX
-                    </button>
+                <!-- รายการการ์ดอัพเกรด (Scrollable) -->
+                <div id="upgrades-list" class="flex-1 overflow-y-auto eggshell-scroll pr-1 space-y-2.5">
+                    <!-- การ์ดอัพเกรดจะถูกสร้างครั้งเดียวเมื่อเริ่มต้นเกม -->
                 </div>
             </div>
 
-            <!-- รายการการ์ดอัพเกรด (Scrollable) -->
-            <div id="upgrades-list" class="relative z-10 flex-1 overflow-y-auto eggshell-scroll pr-1 pt-3 space-y-2.5">
-                <!-- การ์ดอัพเกรดจะถูกสร้างและอัปเดตด้วย JavaScript -->
+            <!-- มุมมองที่ 2: ระบบจุติ (Rebirth & Permanent Skills) -->
+            <div id="tab-content-rebirth" class="hidden relative z-10 flex-1 flex-col min-h-0 pt-3 overflow-y-auto eggshell-scroll pr-1 space-y-3">
+                <!-- การ์ดสถานะการจุติและปุ่มจุติตอนนี้ -->
+                <div class="rebirth-hero-card rounded-2xl p-4 text-white">
+                    <div class="flex items-start justify-between gap-2">
+                        <div>
+                            <div class="text-xs font-semibold text-violet-200 uppercase tracking-wider">แท่นพิธีจุติแห่งท้องฟ้า</div>
+                            <h2 class="font-display font-extrabold text-lg sm:text-xl text-white mt-0.5">
+                                จุติแล้ว <span id="rb-count" class="text-cyan-300 tabular-nums">0</span> ครั้ง
+                            </h2>
+                        </div>
+                        <div class="bg-violet-950/80 border border-violet-400/50 rounded-xl px-3 py-1.5 text-right">
+                            <div class="text-[10px] text-violet-200">ผลึกจุติคงเหลือ</div>
+                            <div class="font-display font-extrabold text-base sm:text-lg text-amber-300 tabular-nums">
+                                💎 <span id="rb-crystals">0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- สรุปตัวคูณถาวร -->
+                    <div class="mt-2.5 grid grid-cols-2 gap-2 text-xs">
+                        <div class="bg-white/10 rounded-xl p-2 border border-white/15">
+                            <div class="text-violet-200 text-[11px]">โบนัสจากผลึก (+15%/ชิ้น)</div>
+                            <div class="font-bold text-amber-200 tabular-nums" id="rb-crystal-bonus">+0%</div>
+                        </div>
+                        <div class="bg-white/10 rounded-xl p-2 border border-white/15">
+                            <div class="text-violet-200 text-[11px]">ตัวคูณจุติรวมทั้งหมด</div>
+                            <div class="font-bold text-cyan-200 tabular-nums" id="rb-total-mult">x1.00</div>
+                        </div>
+                    </div>
+
+                    <!-- หลอดความคืบหน้าสู่ผลึกจุติถัดไป -->
+                    <div class="mt-3 bg-violet-950/60 rounded-xl p-2.5 border border-violet-400/30">
+                        <div class="flex items-center justify-between text-xs font-bold mb-1">
+                            <span class="text-violet-100">ผลึกที่จะได้รับเมื่อจุติ:</span>
+                            <span class="text-amber-300 text-sm tabular-nums">+<span id="rb-pending-crystals">0</span> 💎</span>
+                        </div>
+                        <div class="w-full h-2.5 bg-violet-950 rounded-full overflow-hidden p-0.5 border border-violet-500/40">
+                            <div id="rb-next-bar" class="h-full rounded-full bg-gradient-to-r from-cyan-400 via-violet-400 to-amber-300" style="width: 0%;"></div>
+                        </div>
+                        <div class="flex justify-between items-center mt-1 text-[11px] text-violet-200 tabular-nums">
+                            <span id="rb-progress-label">สะสมรอบนี้: 0 / 1.00 M</span>
+                            <span id="rb-next-crystal-req">ถัดไป: 1.00 M</span>
+                        </div>
+                    </div>
+
+                    <!-- ปุ่มกดจุติตอนนี้ -->
+                    <button id="btn-trigger-rebirth" type="button" class="mt-3 w-full py-2.5 px-4 rounded-xl font-display font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 transition-all cursor-pointer bg-violet-900/60 text-violet-300 border border-violet-500/40">
+                        <span>🔮</span>
+                        <span id="btn-rebirth-text">ต้องสะสมไข่รอบนี้ครบ 1.00 M</span>
+                    </button>
+                </div>
+
+                <!-- หัวข้อสกิลถาวรจากผลึกจุติ -->
+                <div class="flex items-center justify-between px-1">
+                    <div>
+                        <h3 class="font-display font-bold text-sm sm:text-base text-eggshell-800">✨ พรสวรรค์ถาวร (ใช้ผลึกจุติ 💎)</h3>
+                        <p class="text-[11px] text-eggshell-700">อัปเกรดเหล่านี้จะคงอยู่ตลอดไปแม้หลังทำการจุติ</p>
+                    </div>
+                </div>
+
+                <!-- รายการสกิลถาวร 6 ชนิด -->
+                <div id="rebirth-skills-list" class="space-y-2.5 pb-1">
+                    <!-- การ์ดสกิลจุติจะถูกสร้างครั้งเดียวเมื่อเริ่มต้นเกม -->
+                </div>
             </div>
         </aside>
     </main>
 
-    <!-- หน้าต่างยืนยันการรีเซ็ตข้อมูล (Custom Modal - ไม่ใช้ alert/confirm) -->
-    <div id="reset-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-sky-950/45 backdrop-blur-xs p-4">
+    <!-- หน้าต่างยืนยันการจุติ (Rebirth Confirmation Modal) -->
+    <div id="rebirth-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-violet-950/60 p-4">
+        <div class="eggshell-panel max-w-md w-full rounded-3xl p-5 sm:p-6 shadow-2xl border-2 border-violet-500">
+            <div class="text-center">
+                <div class="w-14 h-14 mx-auto rounded-2xl bg-gradient-to-br from-violet-600 to-indigo-700 text-white text-3xl flex items-center justify-center shadow-md mb-2">
+                    🔮
+                </div>
+                <h3 class="font-display font-extrabold text-xl sm:text-2xl text-eggshell-800">ยืนยันการจุติ (Rebirth)?</h3>
+                <p class="text-xs sm:text-sm text-eggshell-700 mt-1">
+                    รับผลึกจุติ <strong class="text-violet-700 text-base">+<span id="modal-rb-gain">0</span> 💎</strong> และเพิ่มตัวคูณพลังถาวรเป็น <strong class="text-amber-700" id="modal-rb-new-mult">x1.00</strong>
+                </p>
+            </div>
+
+            <div class="mt-4 grid grid-cols-2 gap-2.5 text-xs">
+                <div class="bg-rose-50/90 border border-rose-200 rounded-2xl p-3">
+                    <div class="font-bold text-rose-800 mb-1">🔄 สิ่งที่จะรีเซ็ต</div>
+                    <ul class="space-y-1 text-rose-700">
+                        <li>• จำนวนไข่ปัจจุบัน</li>
+                        <li>• เลเวลอัปเกรดปกติ 12 ชนิด</li>
+                        <li>• ยอดไข่สะสมรอบปัจจุบัน</li>
+                    </ul>
+                </div>
+                <div class="bg-emerald-50/90 border border-emerald-200 rounded-2xl p-3">
+                    <div class="font-bold text-emerald-800 mb-1">💎 สิ่งที่คงอยู่ถาวร</div>
+                    <ul class="space-y-1 text-emerald-700">
+                        <li>• ผลึกจุติและสกิลจุติทั้งหมด</li>
+                        <li>• จำนวนครั้งที่จุติ (+10%/ครั้ง)</li>
+                        <li>• ระดับวิวัฒนาการไข่</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-5 flex items-center justify-center gap-3">
+                <button id="btn-rebirth-cancel" type="button" class="game-pill-btn flex-1 py-2.5 rounded-xl font-bold text-sm text-eggshell-800 cursor-pointer">
+                    ยังไม่จุติ
+                </button>
+                <button id="btn-rebirth-confirm" type="button" class="flex-1 py-2.5 rounded-xl font-display font-bold text-sm text-white bg-gradient-to-r from-violet-600 to-indigo-600 border border-violet-900 shadow-md active:translate-y-0.5 cursor-pointer">
+                    🔮 ยืนยันการจุติ!
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- หน้าต่างยืนยันการรีเซ็ตข้อมูลทั้งหมด (Hard Reset Modal) -->
+    <div id="reset-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-sky-950/45 p-4">
         <div class="eggshell-panel max-w-sm w-full rounded-3xl p-6 text-center shadow-2xl">
             <img src="https://raw.githubusercontent.com/memspopcat9472/Egg-Clicker/refs/heads/main/IMG_0818.png"
                  alt="รีเซ็ตเกม"
-                 class="w-16 h-20 object-contain mx-auto mb-2 drop-shadow" />
-            <h3 class="font-display font-bold text-xl text-eggshell-800">เริ่มเกมใหม่ทั้งหมดหรือไม่?</h3>
+                 class="w-16 h-20 object-contain mx-auto mb-2" />
+            <h3 class="font-display font-bold text-xl text-eggshell-800">ล้างข้อมูลเริ่มใหม่ทั้งหมด?</h3>
             <p class="text-sm text-eggshell-700 mt-2 leading-relaxed">
-                จำนวนไข่ เลเวลอัพเกรด และระดับขั้นทั้งหมดจะถูกรีเซ็ตกลับไปเริ่มต้นใหม่ คุณแน่ใจหรือไม่?
+                จำนวนไข่ อัปเกรด ระดับวิวัฒนาการ รวมถึง<strong>ผลึกจุติและสกิลถาวรทั้งหมด</strong>จะถูกล้างค่าเริ่มต้นใหม่!
             </p>
             <div class="mt-5 flex items-center justify-center gap-3">
                 <button id="btn-reset-cancel" type="button" class="game-pill-btn flex-1 py-2.5 rounded-xl font-bold text-sm text-eggshell-800 cursor-pointer">
                     ยกเลิก
                 </button>
-                <button id="btn-reset-confirm" type="button" class="flex-1 py-2.5 rounded-xl font-bold text-sm text-white bg-gradient-to-b from-rose-500 to-rose-600 border border-rose-800 shadow-md hover:brightness-110 active:translate-y-0.5 cursor-pointer">
-                    ยืนยันเริ่มใหม่
+                <button id="btn-reset-confirm" type="button" class="flex-1 py-2.5 rounded-xl font-bold text-sm text-white bg-gradient-to-b from-rose-500 to-rose-600 border border-rose-800 shadow-md active:translate-y-0.5 cursor-pointer">
+                    ยืนยันล้างข้อมูล
                 </button>
             </div>
         </div>
@@ -455,7 +754,7 @@
     <script>
         /**
          * ============================================================================
-         * 1. โหลดรูปภาพไข่ของผู้ใช้ล่วงหน้า (Preload & Decode เพื่อสลับรูป 0ms ไร้กระพริบ)
+         * 1. การตั้งค่าสไปรท์ไข่จริงและการถอดรหัสล่วงหน้า (0ms Instant Sprite Switching)
          * ============================================================================
          */
         const CUSTOM_EGG_URLS = {
@@ -463,152 +762,248 @@
             pressed: 'https://raw.githubusercontent.com/memspopcat9472/Egg-Clicker/refs/heads/main/IMG_0818.png'
         };
 
-        const loadedSprites = {
-            idle: new Image(),
-            pressed: new Image()
-        };
+        // Offscreen Canvas ขนาด 72x90px สำหรับสไปรท์ไข่พื้นหลังที่ตกลงมา (ประหยัดแบนด์วิดท์ GPU มหาศาล)
+        const bgEggSprite = document.createElement('canvas');
+        bgEggSprite.width = 72;
+        bgEggSprite.height = 90;
+        let bgEggSpriteReady = false;
 
-        loadedSprites.idle.crossOrigin = 'anonymous';
-        loadedSprites.idle.src = CUSTOM_EGG_URLS.idle;
-        if (loadedSprites.idle.decode) loadedSprites.idle.decode().catch(() => {});
+        async function preloadAndDecodeSprites() {
+            const loadAndDecode = (url) => new Promise((resolve) => {
+                const img = new Image();
+                img.crossOrigin = 'anonymous';
+                img.decoding = 'async';
+                img.onload = async () => {
+                    try {
+                        if (typeof img.decode === 'function') {
+                            await img.decode();
+                        }
+                    } catch (e) {}
+                    resolve(img);
+                };
+                img.onerror = () => resolve(null);
+                img.src = url;
+            });
 
-        loadedSprites.pressed.crossOrigin = 'anonymous';
-        loadedSprites.pressed.src = CUSTOM_EGG_URLS.pressed;
-        if (loadedSprites.pressed.decode) loadedSprites.pressed.decode().catch(() => {});
+            const [idleImg] = await Promise.all([
+                loadAndDecode(CUSTOM_EGG_URLS.idle),
+                loadAndDecode(CUSTOM_EGG_URLS.pressed)
+            ]);
+
+            if (idleImg && idleImg.naturalWidth > 0) {
+                const sCtx = bgEggSprite.getContext('2d');
+                const aspect = idleImg.naturalWidth / idleImg.naturalHeight;
+                let drawW = 68;
+                let drawH = 86;
+                if (aspect > drawW / drawH) {
+                    drawH = drawW / aspect;
+                } else {
+                    drawW = drawH * aspect;
+                }
+                sCtx.clearRect(0, 0, 72, 90);
+                sCtx.drawImage(idleImg, (72 - drawW) * 0.5, (90 - drawH) * 0.5, drawW, drawH);
+                bgEggSpriteReady = true;
+            }
+        }
 
         /**
          * ============================================================================
-         * 2. ระบบเสียงสังเคราะห์ (Web Audio API Sound Synthesizer)
+         * 2. สร้างพื้นผิวเปลือกไข่แบบ Procedural ลงบน Offscreen Canvas 128x128 (Zero Lag)
          * ============================================================================
          */
-        class EggSoundEngine {
-            constructor() {
-                this.ctx = null;
-                this.enabled = true;
+        function initProceduralEggshellTexture() {
+            const texCanvas = document.createElement('canvas');
+            texCanvas.width = 128;
+            texCanvas.height = 128;
+            const ctx = texCanvas.getContext('2d');
+
+            // เติมสีพื้นเนื้อเปลือกไข่อบอุ่น
+            ctx.fillStyle = '#F5E4D0';
+            ctx.fillRect(0, 0, 128, 128);
+
+            // สุ่มเม็ดสีและจุดเปลือกไข่ธรรมชาติแบบไร้รอยต่อ (Tileable)
+            let seed = 4219;
+            const rand = () => {
+                seed = (seed * 16807) % 2147483647;
+                return (seed - 1) / 2147483646;
+            };
+
+            const tones = [
+                'rgba(233, 208, 179, 0.55)',
+                'rgba(207, 169, 126, 0.28)',
+                'rgba(148, 107, 64, 0.16)',
+                'rgba(255, 251, 245, 0.45)'
+            ];
+
+            for (let i = 0; i < 240; i++) {
+                const x = rand() * 128;
+                const y = rand() * 128;
+                const r = 0.6 + rand() * 1.4;
+                ctx.fillStyle = tones[(rand() * tones.length) | 0];
+                ctx.beginPath();
+                ctx.arc(x, y, r, 0, Math.PI * 2);
+                ctx.fill();
             }
 
+            const dataUrl = `url("${texCanvas.toDataURL('image/png')}")`;
+            const styleEl = document.createElement('style');
+            styleEl.textContent = `
+                .eggshell-panel, .eggshell-card, .minigame-card {
+                    background-image: ${dataUrl};
+                }
+                .rebirth-skill-card {
+                    background-image: linear-gradient(180deg, rgba(245, 243, 255, 0.86) 0%, rgba(233, 208, 179, 0.68) 100%), ${dataUrl};
+                }
+            `;
+            document.head.appendChild(styleEl);
+        }
+
+        /**
+         * ============================================================================
+         * 3. ระบบเสียงสังเคราะห์ Web Audio API (ไม่ใช้ไฟล์เสียงภายนอก)
+         * ============================================================================
+         */
+        const soundEngine = {
+            ctx: null,
+            enabled: true,
             init() {
                 if (!this.ctx) {
                     const AudioCtx = window.AudioContext || window.webkitAudioContext;
-                    if (AudioCtx) {
-                        this.ctx = new AudioCtx();
-                    }
+                    if (AudioCtx) this.ctx = new AudioCtx();
                 }
                 if (this.ctx && this.ctx.state === 'suspended') {
-                    this.ctx.resume();
+                    this.ctx.resume().catch(() => {});
                 }
-            }
-
+            },
             toggle() {
                 this.enabled = !this.enabled;
                 if (this.enabled) this.init();
                 return this.enabled;
-            }
-
-            // เสียงป๊อปนุ่มเด้งตอนคลิกไข่ (ปรับระดับเสียงสูงขึ้นตามคอมโบ + เสียงประกายเมื่อติดคริ)
-            playPop(comboRatio = 0, isCrit = false) {
+            },
+            playPop(feverRatio, isCrit) {
                 if (!this.enabled) return;
                 this.init();
                 if (!this.ctx) return;
 
                 const now = this.ctx.currentTime;
-
                 const osc = this.ctx.createOscillator();
                 const gain = this.ctx.createGain();
                 osc.type = isCrit ? 'triangle' : 'sine';
 
-                const baseFreq = (isCrit ? 460 : 295) + comboRatio * 210 + (Math.random() * 22 - 11);
-                osc.frequency.setValueAtTime(baseFreq * 0.72, now);
-                osc.frequency.exponentialRampToValueAtTime(baseFreq * 1.38, now + 0.032);
-                osc.frequency.exponentialRampToValueAtTime(baseFreq * 0.56, now + 0.088);
+                const baseFreq = (isCrit ? 430 : 280) + feverRatio * 170;
+                osc.frequency.setValueAtTime(baseFreq, now);
+                osc.frequency.exponentialRampToValueAtTime(baseFreq * 1.75, now + 0.055);
+                osc.frequency.exponentialRampToValueAtTime(baseFreq * 0.85, now + 0.11);
 
-                gain.gain.setValueAtTime(isCrit ? 0.28 : 0.21, now);
-                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.095);
+                gain.gain.setValueAtTime(isCrit ? 0.16 : 0.11, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
 
                 osc.connect(gain);
                 gain.connect(this.ctx.destination);
                 osc.start(now);
-                osc.stop(now + 0.1);
-
-                if (isCrit) {
-                    const chime = this.ctx.createOscillator();
-                    const chimeGain = this.ctx.createGain();
-                    chime.type = 'sine';
-                    chime.frequency.setValueAtTime(1240, now);
-                    chime.frequency.exponentialRampToValueAtTime(1860, now + 0.11);
-                    chimeGain.gain.setValueAtTime(0.16, now);
-                    chimeGain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
-                    chime.connect(chimeGain);
-                    chimeGain.connect(this.ctx.destination);
-                    chime.start(now);
-                    chime.stop(now + 0.125);
-                }
-            }
-
-            // เสียงอาร์เพจจิโอฉลองเมื่อเลื่อนระดับหรือเก็บไข่ทองคำโบนัส
-            playCelebration() {
-                if (!this.enabled) return;
-                this.init();
-                if (!this.ctx) return;
-
-                const now = this.ctx.currentTime;
-                const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
-                notes.forEach((freq, idx) => {
-                    const osc = this.ctx.createOscillator();
-                    const gain = this.ctx.createGain();
-                    osc.type = 'triangle';
-                    const startTime = now + idx * 0.055;
-                    osc.frequency.setValueAtTime(freq, startTime);
-                    gain.gain.setValueAtTime(0.22, startTime);
-                    gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.32);
-
-                    osc.connect(gain);
-                    gain.connect(this.ctx.destination);
-                    osc.start(startTime);
-                    osc.stop(startTime + 0.34);
-                });
-            }
-
-            // เสียงซื้ออัพเกรดสำเร็จ
+                osc.stop(now + 0.125);
+            },
             playUpgrade() {
                 if (!this.enabled) return;
                 this.init();
                 if (!this.ctx) return;
 
                 const now = this.ctx.currentTime;
-                const freqs = [440, 659.25];
-                freqs.forEach((f, i) => {
+                [523.25, 659.25].forEach((freq, idx) => {
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(freq, now + idx * 0.055);
+                    gain.gain.setValueAtTime(0.11, now + idx * 0.055);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.055 + 0.16);
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+                    osc.start(now + idx * 0.055);
+                    osc.stop(now + idx * 0.055 + 0.17);
+                });
+            },
+            playCelebration() {
+                if (!this.enabled) return;
+                this.init();
+                if (!this.ctx) return;
+
+                const now = this.ctx.currentTime;
+                [523.25, 659.25, 783.99, 1046.5].forEach((freq, idx) => {
                     const osc = this.ctx.createOscillator();
                     const gain = this.ctx.createGain();
                     osc.type = 'sine';
-                    const t = now + i * 0.045;
-                    osc.frequency.setValueAtTime(f, t);
-                    gain.gain.setValueAtTime(0.16, t);
-                    gain.gain.exponentialRampToValueAtTime(0.001, t + 0.14);
+                    osc.frequency.setValueAtTime(freq, now + idx * 0.065);
+                    gain.gain.setValueAtTime(0.13, now + idx * 0.065);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.065 + 0.28);
                     osc.connect(gain);
                     gain.connect(this.ctx.destination);
-                    osc.start(t);
-                    osc.stop(t + 0.15);
+                    osc.start(now + idx * 0.065);
+                    osc.stop(now + idx * 0.065 + 0.29);
+                });
+            },
+            playMinigameAppear() {
+                if (!this.enabled) return;
+                this.init();
+                if (!this.ctx) return;
+
+                const now = this.ctx.currentTime;
+                [587.33, 783.99, 987.77].forEach((freq, idx) => {
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(freq, now + idx * 0.06);
+                    gain.gain.setValueAtTime(0.13, now + idx * 0.06);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.06 + 0.24);
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+                    osc.start(now + idx * 0.06);
+                    osc.stop(now + idx * 0.06 + 0.25);
+                });
+            },
+            playMinigameHit(mult) {
+                if (!this.enabled) return;
+                this.init();
+                if (!this.ctx) return;
+
+                const now = this.ctx.currentTime;
+                const notes = mult >= 10
+                    ? [523.25, 659.25, 783.99, 1046.5, 1318.5]
+                    : mult >= 7
+                        ? [523.25, 659.25, 783.99, 1046.5]
+                        : mult >= 5
+                            ? [440, 554.37, 659.25]
+                            : [392.0, 493.88];
+
+                notes.forEach((freq, idx) => {
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+                    osc.type = mult >= 7 ? 'triangle' : 'sine';
+                    osc.frequency.setValueAtTime(freq, now + idx * 0.055);
+                    gain.gain.setValueAtTime(0.14, now + idx * 0.055);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.055 + 0.30);
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+                    osc.start(now + idx * 0.055);
+                    osc.stop(now + idx * 0.055 + 0.31);
                 });
             }
-        }
-
-        const soundEngine = new EggSoundEngine();
+        };
 
         /**
          * ============================================================================
-         * 3. ข้อมูลการตั้งค่าระดับขั้นและรายการอัพเกรด (Game Config & Upgrades)
+         * 4. ข้อมูลระดับวิวัฒนาการไข่ รายการอัปเกรด 12 ชนิด และสกิลจุติถาวร 6 ชนิด
          * ============================================================================
          */
-        const MILESTONE_TIERS = [
-            { name: 'ไข่เริ่มต้นแห่งท้องฟ้า', baseTarget: 40, bonusMult: 1.0 },
-            { name: 'ไข่สายลมอ่อนโยน', baseTarget: 160, bonusMult: 1.3 },
-            { name: 'ไข่เมฆปุยสีขาว', baseTarget: 620, bonusMult: 1.6 },
-            { name: 'ไข่ประกายแสงอรุณ', baseTarget: 2400, bonusMult: 2.0 },
-            { name: 'ไข่รุ้งกินน้ำเจ็ดสี', baseTarget: 9500, bonusMult: 2.5 },
-            { name: 'ไข่สุริยันเจิดจรัส', baseTarget: 38000, bonusMult: 3.2 },
-            { name: 'ไข่ดาราจักรแห่งนภา', baseTarget: 155000, bonusMult: 4.0 },
-            { name: 'ไข่เทพเจ้าแห่งท้องฟ้า', baseTarget: 650000, bonusMult: 5.0 },
+        const REBIRTH_MIN_EGGS = 1_000_000; // 1M ไข่ต่อรอบเพื่อปลดล็อกการจุติ
+
+        const EVOLUTION_RANKS = [
+            { name: 'ไข่น้อยเริ่มต้น', minEggs: 0, nextTarget: 1_000 },
+            { name: 'ไข่ทองแดง', minEggs: 1_000, nextTarget: 25_000 },
+            { name: 'ไข่เงิน', minEggs: 25_000, nextTarget: 1_000_000 },
+            { name: 'ไข่ทองคำ', minEggs: 1_000_000, nextTarget: 50_000_000 },
+            { name: 'ไข่เพชร', minEggs: 50_000_000, nextTarget: 5_000_000_000 },
+            { name: 'ไข่ดาราจักร', minEggs: 5_000_000_000, nextTarget: 1_000_000_000_000 },
+            { name: 'ไข่เทพเจ้า', minEggs: 1_000_000_000_000, nextTarget: 100_000_000_000_000 }
         ];
 
         const UPGRADE_DEFINITIONS = [
@@ -617,12 +1012,13 @@
                 name: 'นิ้วสัมผัสพลังสูง',
                 icon: '👆',
                 desc: 'เพิ่มพลังการคลิกพื้นฐานในทุกครั้งที่แตะ',
-                baseCost: 15,
-                costScale: 1.15,
+                baseCost: 25,
+                costScale: 1.20,
                 epcAdd: 1,
                 epsAdd: 0,
                 critChanceAdd: 0,
                 critMultAdd: 0,
+                feverBoostAdd: 0,
                 globalMultAdd: 0
             },
             {
@@ -630,25 +1026,27 @@
                 name: 'เครื่องคลิกอัตโนมัติ',
                 icon: '⚙️',
                 desc: 'กลไกช่วยแตะเก็บไข่ให้อัตโนมัติทุกวินาที',
-                baseCost: 65,
-                costScale: 1.15,
+                baseCost: 120,
+                costScale: 1.21,
                 epcAdd: 0,
                 epsAdd: 2,
                 critChanceAdd: 0,
                 critMultAdd: 0,
+                feverBoostAdd: 0,
                 globalMultAdd: 0
             },
             {
                 id: 'lucky_feather',
                 name: 'ขนนกนำโชคคริติคอล',
                 icon: '🪶',
-                desc: 'เพิ่มพลังคลิกและโอกาสติดคริติคอลตัวคูณสูง',
-                baseCost: 190,
-                costScale: 1.17,
-                epcAdd: 4,
+                desc: 'เพิ่มพลังคลิก โอกาสคริติคอล และตัวคูณความแรง',
+                baseCost: 480,
+                costScale: 1.22,
+                epcAdd: 5,
                 epsAdd: 0,
-                critChanceAdd: 1.5,
-                critMultAdd: 0.2,
+                critChanceAdd: 1.2,
+                critMultAdd: 0.25,
+                feverBoostAdd: 0,
                 globalMultAdd: 0
             },
             {
@@ -656,25 +1054,27 @@
                 name: 'ฟาร์มรังไข่กลางเวหา',
                 icon: '🏡',
                 desc: 'ฟาร์มเลี้ยงดูแลไข่ขนาดใหญ่ ผลิตไข่ต่อเนื่อง',
-                baseCost: 520,
-                costScale: 1.16,
+                baseCost: 1_850,
+                costScale: 1.22,
                 epcAdd: 0,
-                epsAdd: 14,
+                epsAdd: 16,
                 critChanceAdd: 0,
                 critMultAdd: 0,
+                feverBoostAdd: 0,
                 globalMultAdd: 0
             },
             {
-                id: 'kinetic_hammer',
-                name: 'ค้อนพลังงานจลน์',
-                icon: '🔨',
-                desc: 'ปลดปล่อยแรงสั่นสะเทือน เพิ่มพลังคลิกมหาศาล',
-                baseCost: 1650,
-                costScale: 1.18,
+                id: 'fever_catalyst',
+                name: 'ตัวเร่งคอมโบ Fever',
+                icon: '🔥',
+                desc: 'เพิ่มพลังคลิกและขยายขีดจำกัดตัวคูณโหมด Fever!',
+                baseCost: 7_500,
+                costScale: 1.24,
                 epcAdd: 28,
                 epsAdd: 0,
-                critChanceAdd: 1.0,
-                critMultAdd: 0.25,
+                critChanceAdd: 0.4,
+                critMultAdd: 0,
+                feverBoostAdd: 0.18,
                 globalMultAdd: 0
             },
             {
@@ -682,12 +1082,27 @@
                 name: 'โรงงานฟักไข่ก้อนเมฆ',
                 icon: '🏭',
                 desc: 'สายพานการผลิตอัตโนมัติระดับอุตสาหกรรม',
-                baseCost: 6200,
-                costScale: 1.17,
+                baseCost: 32_000,
+                costScale: 1.23,
                 epcAdd: 0,
-                epsAdd: 115,
+                epsAdd: 130,
                 critChanceAdd: 0,
                 critMultAdd: 0,
+                feverBoostAdd: 0,
+                globalMultAdd: 0
+            },
+            {
+                id: 'storm_incubator',
+                name: 'ตู้ฟักพายุสายฟ้า',
+                icon: '⛈️',
+                desc: 'อัดประจุสายฟ้าลงในทุกการคลิก เพิ่มคริติคอลรุนแรง',
+                baseCost: 145_000,
+                costScale: 1.25,
+                epcAdd: 160,
+                epsAdd: 0,
+                critChanceAdd: 0.8,
+                critMultAdd: 0.45,
+                feverBoostAdd: 0,
                 globalMultAdd: 0
             },
             {
@@ -695,39 +1110,223 @@
                 name: 'วิหารไข่แห่งนภา',
                 icon: '🏛️',
                 desc: 'พลังศักดิ์สิทธิ์จากท้องฟ้า เพิ่มทั้งคลิกและอัตโนมัติ',
-                baseCost: 26000,
-                costScale: 1.18,
-                epcAdd: 180,
-                epsAdd: 540,
-                critChanceAdd: 1.5,
+                baseCost: 680_000,
+                costScale: 1.25,
+                epcAdd: 420,
+                epsAdd: 1_150,
+                critChanceAdd: 1.0,
                 critMultAdd: 0.35,
+                feverBoostAdd: 0,
+                globalMultAdd: 0
+            },
+            {
+                id: 'starlight_forge',
+                name: 'เตาหลอมแสงดารา',
+                icon: '🌠',
+                desc: 'หลอมละอองดาวเร่งพลังคลิกและตัวคูณ Fever สูงสุด',
+                baseCost: 3_400_000,
+                costScale: 1.26,
+                epcAdd: 2_400,
+                epsAdd: 0,
+                critChanceAdd: 0.8,
+                critMultAdd: 0,
+                feverBoostAdd: 0.30,
+                globalMultAdd: 0
+            },
+            {
+                id: 'celestial_ark',
+                name: 'นาวาสวรรค์แห่งไข่',
+                icon: '⛵',
+                desc: 'กองเรือฟักไข่ลอยฟ้าขนาดมหึมา ผลิตไข่มหาศาล',
+                baseCost: 18_000_000,
+                costScale: 1.27,
+                epcAdd: 0,
+                epsAdd: 16_500,
+                critChanceAdd: 0,
+                critMultAdd: 0,
+                feverBoostAdd: 0,
+                globalMultAdd: 0
+            },
+            {
+                id: 'quantum_shell',
+                name: 'เปลือกไข่ควอนตัม',
+                icon: '⚛️',
+                desc: 'จำลองไข่คู่ขนานในทุกมิติ เพิ่มพลังคลิกและอัตโนมัติ',
+                baseCost: 110_000_000,
+                costScale: 1.28,
+                epcAdd: 18_000,
+                epsAdd: 85_000,
+                critChanceAdd: 1.2,
+                critMultAdd: 0.60,
+                feverBoostAdd: 0,
                 globalMultAdd: 0
             },
             {
                 id: 'cosmic_amplifier',
                 name: 'ตัวคูณพลังจักรวาล',
                 icon: '🌌',
-                desc: 'คูณผลผลิตไข่ทั้งหมดในเกมขึ้นอีก +10% ต่อเลเวล!',
-                baseCost: 95000,
-                costScale: 1.24,
-                epcAdd: 450,
-                epsAdd: 1400,
+                desc: 'คูณผลผลิตไข่ทั้งหมดในเกมขึ้นอีก +12% ต่อเลเวล!',
+                baseCost: 750_000_000,
+                costScale: 1.30,
+                epcAdd: 75_000,
+                epsAdd: 350_000,
                 critChanceAdd: 1.0,
-                critMultAdd: 0.4,
-                globalMultAdd: 0.10
+                critMultAdd: 0.50,
+                feverBoostAdd: 0.25,
+                globalMultAdd: 0.12
             }
         ];
 
-        // สถานะหลักของเกม (Game State)
+        const REBIRTH_SKILL_DEFINITIONS = [
+            {
+                id: 'ancient_bloodline',
+                name: 'สายเลือดไข่โบราณ',
+                icon: '🧬',
+                desc: 'เพิ่มตัวคูณพลังผลิตไข่รวมทั้งหมด +25% ถาวรต่อเลเวล',
+                baseCost: 1,
+                costScale: 1.65,
+                maxLevel: 999,
+                effectText: (lvl) => `+${lvl * 25}% พลังรวมถาวร`
+            },
+            {
+                id: 'starting_legacy',
+                name: 'มรดกเริ่มต้น',
+                icon: '🎁',
+                desc: 'เริ่มต้นทุกรอบหลังจุติพร้อมไข่ทุนตั้งตัวทันที',
+                baseCost: 1,
+                costScale: 1.80,
+                maxLevel: 25,
+                effectText: (lvl) => lvl === 0 ? 'เริ่มที่ 0 ไข่' : `เริ่มรอบใหม่ด้วย ${formatNumber(getStartingLegacyEggs(lvl))} ไข่`
+            },
+            {
+                id: 'limitless_frenzy',
+                name: 'คลั่งไคล้ไร้ขีดจำกัด',
+                icon: '🔥',
+                desc: 'เพิ่มเพดานตัวคูณ Fever +0.6x และชะลอเกจลดลง -10%/เลเวล',
+                baseCost: 2,
+                costScale: 1.75,
+                maxLevel: 8,
+                effectText: (lvl) => `+${(lvl * 0.6).toFixed(1)}x เพดาน Fever`
+            },
+            {
+                id: 'golden_blessing',
+                name: 'พรแห่งไข่ทองคำ',
+                icon: '✨',
+                desc: 'ไข่ทองคำเกิดไวขึ้น 12% และเพิ่มรางวัลโบนัส +35%/เลเวล',
+                baseCost: 2,
+                costScale: 1.75,
+                maxLevel: 6,
+                effectText: (lvl) => `+${lvl * 35}% รางวัลไข่ทองคำ`
+            },
+            {
+                id: 'clicker_spirit',
+                name: 'จิตวิญญาณนักคลิก',
+                icon: '⚡',
+                desc: 'เพิ่มโอกาสคริติคอล +2% และความแรงคริ +0.5x ถาวรต่อเลเวล',
+                baseCost: 2,
+                costScale: 1.70,
+                maxLevel: 15,
+                effectText: (lvl) => `+${lvl * 2}% คริ / +${(lvl * 0.5).toFixed(1)}x แรงคริ`
+            },
+            {
+                id: 'evolution_discount',
+                name: 'ลดราคาวิวัฒนาการ',
+                icon: '🏷️',
+                desc: 'ลดราคาอัปเกรดปกติทั้งหมด -4% ต่อเลเวล (สูงสุด 10 เลเวล)',
+                baseCost: 3,
+                costScale: 1.85,
+                maxLevel: 10,
+                effectText: (lvl) => `ลดราคาอัปเกรด -${lvl * 4}%`
+            }
+        ];
+
+        function getStartingLegacyEggs(lvl) {
+            if (lvl <= 0) return 0;
+            return Math.floor(2_500 * Math.pow(2.4, lvl - 1));
+        }
+
+        // สถานะหลักของเกม (รองรับการจุติและบันทึกข้ามเซสชัน)
         let gameState = {
             eggs: 0,
+            runEggs: 0,
             totalEggsEarned: 0,
             totalClicks: 0,
-            tierLevel: 1,
-            tierProgress: 0,
+            highestRankIdx: 0,
+            rebirthCount: 0,
+            rebirthCrystals: 0,
+            rebirthSkills: {},
             upgrades: {},
-            buyMode: '1' // '1' | '10' | 'MAX'
+            buyMode: '1',
+            activeTab: 'upgrades'
         };
+
+        // แคชค่าพลังของผู้เล่น (คำนวณใหม่เมื่อซื้ออัปเกรด จุติ หรือโหลดเซฟ)
+        let cachedStats = {
+            epc: 1,
+            eps: 0,
+            critChance: 5,
+            critMult: 3.0,
+            maxFeverBonus: 4.0,
+            feverChargeRate: 2.6,
+            feverDecayRate: 46.0,
+            globalMult: 1.0,
+            ascensionMult: 1.0,
+            upgradeCostMult: 1.0,
+            goldenRewardMult: 1.0,
+            goldenSpawnIntervalMs: 28000
+        };
+
+        function recalculateStats() {
+            let baseEpc = 1;
+            let baseEps = 0;
+            let critChance = 5;
+            let critMult = 3.0;
+            let feverBoost = 0;
+            let upgradeGlobalMult = 1.0;
+
+            for (let i = 0; i < UPGRADE_DEFINITIONS.length; i++) {
+                const def = UPGRADE_DEFINITIONS[i];
+                const lvl = gameState.upgrades[def.id] || 0;
+                if (lvl > 0) {
+                    baseEpc += def.epcAdd * lvl;
+                    baseEps += def.epsAdd * lvl;
+                    critChance += def.critChanceAdd * lvl;
+                    critMult += def.critMultAdd * lvl;
+                    feverBoost += def.feverBoostAdd * lvl;
+                    upgradeGlobalMult += def.globalMultAdd * lvl;
+                }
+            }
+
+            // คำนวณโบนัสจากระบบจุติ (Rebirth)
+            const ancientLvl = gameState.rebirthSkills.ancient_bloodline || 0;
+            const frenzyLvl = gameState.rebirthSkills.limitless_frenzy || 0;
+            const goldenLvl = gameState.rebirthSkills.golden_blessing || 0;
+            const spiritLvl = gameState.rebirthSkills.clicker_spirit || 0;
+            const discountLvl = Math.min(10, gameState.rebirthSkills.evolution_discount || 0);
+
+            const crystalBonusMult = 1 + gameState.rebirthCrystals * 0.15;
+            const rebirthCountMult = Math.pow(1.10, gameState.rebirthCount);
+            const ancientMult = 1 + ancientLvl * 0.25;
+            const ascensionMult = crystalBonusMult * rebirthCountMult * ancientMult;
+
+            const totalGlobalMult = upgradeGlobalMult * ascensionMult;
+
+            critChance = Math.min(80, critChance + spiritLvl * 2.0);
+            critMult = critMult + spiritLvl * 0.5;
+
+            cachedStats.epc = Math.max(1, Math.round(baseEpc * totalGlobalMult));
+            cachedStats.eps = Math.round(baseEps * totalGlobalMult * 10) / 10;
+            cachedStats.critChance = critChance;
+            cachedStats.critMult = critMult;
+            cachedStats.maxFeverBonus = Math.min(12.0, 4.0 + feverBoost + frenzyLvl * 0.6);
+            cachedStats.feverChargeRate = Math.min(9.0, 2.6 + feverBoost * 0.8 + frenzyLvl * 0.25);
+            cachedStats.feverDecayRate = Math.max(18.0, 46.0 * Math.pow(0.90, frenzyLvl));
+            cachedStats.globalMult = totalGlobalMult;
+            cachedStats.ascensionMult = ascensionMult;
+            cachedStats.upgradeCostMult = Math.max(0.50, 1 - discountLvl * 0.04);
+            cachedStats.goldenRewardMult = 1 + goldenLvl * 0.35;
+            cachedStats.goldenSpawnIntervalMs = Math.max(10000, Math.round(28000 * Math.pow(0.88, goldenLvl)));
+        }
 
         // ฟิสิกส์ 2D Squash-and-Stretch และสถานะรูปภาพของไข่
         const eggPhysics = {
@@ -739,44 +1338,66 @@
             rotation: 0,
             rotVel: 0,
             comboCount: 0,
-            feverEnergy: 0, // 0 ถึง 100
+            feverEnergy: 0,
             comboDecayTimer: 0,
             isPointerDown: false,
             pressedUntil: 0,
             isShowingPressed: false
         };
 
-        const SAVE_KEY = 'egg_clicker_custom_sprite_v2';
+        const SAVE_KEY = 'egg_clicker_rebirth_v4';
+        const LEGACY_SAVE_KEY = 'egg_clicker_ultra_smooth_v3';
 
         /**
          * ============================================================================
-         * 4. ฟังก์ชันคำนวณตัวเลข ราคาอัพเกรด (x1, x10, MAX) และค่าสถานะ
+         * 5. ฟังก์ชันคำนวณตัวเลข ราคาอัปเกรด ระดับวิวัฒนาการ และผลึกจุติ
          * ============================================================================
          */
+        const NUMBER_SUFFIXES = [
+            { value: 1e39, symbol: 'Dd' },
+            { value: 1e36, symbol: 'Ud' },
+            { value: 1e33, symbol: 'Dc' },
+            { value: 1e30, symbol: 'No' },
+            { value: 1e27, symbol: 'Oc' },
+            { value: 1e24, symbol: 'Sp' },
+            { value: 1e21, symbol: 'Sx' },
+            { value: 1e18, symbol: 'Qi' },
+            { value: 1e15, symbol: 'Qa' },
+            { value: 1e12, symbol: 'T' },
+            { value: 1e9, symbol: 'B' },
+            { value: 1e6, symbol: 'M' },
+            { value: 1e3, symbol: 'K' }
+        ];
+
         function formatNumber(num) {
             if (!isFinite(num) || num < 0) return '0';
-            if (num >= 1e15) return (num / 1e15).toFixed(2) + ' Qa';
-            if (num >= 1e12) return (num / 1e12).toFixed(2) + ' T';
-            if (num >= 1e9) return (num / 1e9).toFixed(2) + ' B';
-            if (num >= 1e6) return (num / 1e6).toFixed(2) + ' M';
-            if (num >= 1e4) return (num / 1e3).toFixed(2) + ' K';
+            if (num >= 10000) {
+                for (let i = 0; i < NUMBER_SUFFIXES.length; i++) {
+                    const s = NUMBER_SUFFIXES[i];
+                    if (num >= s.value) {
+                        return (num / s.value).toFixed(2) + ' ' + s.symbol;
+                    }
+                }
+            }
             return Math.floor(num).toLocaleString('th-TH');
         }
 
         function getUpgradeCost(def, currentLevel, amount) {
             let total = 0;
+            const discount = cachedStats.upgradeCostMult;
             for (let i = 0; i < amount; i++) {
-                total += Math.floor(def.baseCost * Math.pow(def.costScale, currentLevel + i));
+                const rawCost = def.baseCost * Math.pow(def.costScale, currentLevel + i) * discount;
+                total += Math.max(1, Math.floor(rawCost));
             }
             return total;
         }
 
-        // คำนวณจำนวนเลเวลสูงสุดที่ซื้อได้จริงสำหรับโหมด MAX
         function getMaxAffordablePurchase(def, currentLevel, availableEggs) {
             let count = 0;
             let totalCost = 0;
+            const discount = cachedStats.upgradeCostMult;
             while (count < 500) {
-                const nextCost = Math.floor(def.baseCost * Math.pow(def.costScale, currentLevel + count));
+                const nextCost = Math.max(1, Math.floor(def.baseCost * Math.pow(def.costScale, currentLevel + count) * discount));
                 if (totalCost + nextCost <= availableEggs) {
                     totalCost += nextCost;
                     count++;
@@ -785,544 +1406,591 @@
                 }
             }
             if (count === 0) {
+                const singleCost = Math.max(1, Math.floor(def.baseCost * Math.pow(def.costScale, currentLevel) * discount));
                 return {
                     count: 1,
-                    cost: Math.floor(def.baseCost * Math.pow(def.costScale, currentLevel)),
+                    cost: singleCost,
                     canAfford: false
                 };
             }
             return { count, cost: totalCost, canAfford: true };
         }
 
-        function getPlayerStats() {
-            let baseEpc = 1;
-            let baseEps = 0;
-            let critChance = 5;
-            let critMult = 3.0;
-            let globalMult = 1.0;
-
-            UPGRADE_DEFINITIONS.forEach(def => {
-                const lvl = gameState.upgrades[def.id] || 0;
-                if (lvl > 0) {
-                    baseEpc += def.epcAdd * lvl;
-                    baseEps += def.epsAdd * lvl;
-                    critChance += def.critChanceAdd * lvl;
-                    critMult += def.critMultAdd * lvl;
-                    globalMult += def.globalMultAdd * lvl;
-                }
-            });
-
-            critChance = Math.min(70, critChance);
-            const epc = Math.max(1, Math.round(baseEpc * globalMult));
-            const eps = Math.round(baseEps * globalMult * 10) / 10;
-
-            return { epc, eps, critChance, critMult, globalMult };
+        function getRebirthSkillCost(skillDef, currentLevel) {
+            return Math.max(1, Math.floor(skillDef.baseCost * Math.pow(skillDef.costScale, currentLevel)));
         }
 
-        function getCurrentTierInfo() {
-            const idx = (gameState.tierLevel - 1) % MILESTONE_TIERS.length;
-            const cycle = Math.floor((gameState.tierLevel - 1) / MILESTONE_TIERS.length);
-            const template = MILESTONE_TIERS[idx];
-            const scaleFactor = Math.pow(3.6, cycle);
-            const maxTarget = Math.floor(template.baseTarget * scaleFactor);
-            const bonus = Math.floor(maxTarget * 0.75 * template.bonusMult);
-            const name = cycle > 0 ? `${template.name} (+${cycle})` : template.name;
+        function calculatePendingRebirthCrystals(runEggs) {
+            if (runEggs < REBIRTH_MIN_EGGS) return 0;
+            return Math.floor(Math.pow(runEggs / REBIRTH_MIN_EGGS, 0.45));
+        }
 
+        function getEggsRequiredForCrystals(crystalTarget) {
+            if (crystalTarget <= 1) return REBIRTH_MIN_EGGS;
+            return Math.ceil(REBIRTH_MIN_EGGS * Math.pow(crystalTarget, 1 / 0.45));
+        }
+
+        function getEvolutionRankInfo() {
+            const total = gameState.totalEggsEarned;
+            let rankIdx = 0;
+            for (let i = EVOLUTION_RANKS.length - 1; i >= 0; i--) {
+                if (total >= EVOLUTION_RANKS[i].minEggs) {
+                    rankIdx = i;
+                    break;
+                }
+            }
+
+            const rank = EVOLUTION_RANKS[rankIdx];
+            if (rankIdx === EVOLUTION_RANKS.length - 1 && total >= rank.nextTarget) {
+                const extraTier = Math.floor(Math.log10(total / rank.nextTarget)) + 1;
+                const prevGoal = rank.nextTarget * Math.pow(10, extraTier - 1);
+                const nextGoal = rank.nextTarget * Math.pow(10, extraTier);
+                const pct = Math.min(100, Math.floor(((total - prevGoal) / (nextGoal - prevGoal)) * 100));
+                return {
+                    rankIdx: rankIdx + extraTier,
+                    name: `${rank.name} ขั้น +${extraTier}`,
+                    pct,
+                    current: total,
+                    target: nextGoal
+                };
+            }
+
+            const span = Math.max(1, rank.nextTarget - rank.minEggs);
+            const pct = Math.min(100, Math.max(0, Math.floor(((total - rank.minEggs) / span) * 100)));
             return {
-                tier: gameState.tierLevel,
-                name,
-                maxTarget,
-                bonus
+                rankIdx,
+                name: rank.name,
+                pct,
+                current: total,
+                target: rank.nextTarget
             };
         }
 
         function getFeverMultiplier() {
             if (eggPhysics.comboCount <= 1) return 1.0;
-            const mult = 1.0 + Math.min(2.5, (eggPhysics.feverEnergy / 100) * 2.5);
+            const mult = 1.0 + (eggPhysics.feverEnergy / 100) * cachedStats.maxFeverBonus;
             return Math.round(mult * 10) / 10;
         }
 
         /**
          * ============================================================================
-         * 5. ระบบ Canvas พื้นหลัง: รูปไข่จริงของผู้เล่นแบบจางๆ หมุนและตกลงมาอย่างนุ่มนวล
+         * 6. มินิเกมจับจังหวะตัวคูณทุกๆ 40 วินาที (x2 | x5 | x7 | x10 | x7 | x5 | x2)
          * ============================================================================
          */
-        const bgCanvas = document.getElementById('bg-canvas');
-        const bgCtx = bgCanvas.getContext('2d');
-        const fxCanvas = document.getElementById('fx-canvas');
-        const fxCtx = fxCanvas.getContext('2d');
-        let fallingEggs = [];
+        const MINIGAME_INTERVAL_SEC = 40.0;
+        const MINIGAME_ACTIVE_DURATION = 12.0;
+        const MINIGAME_RESULT_DURATION = 1.6;
+        const MINIGAME_NEEDLE_SPEED = 135; // 1.35 ความกว้างหลอดต่อวินาที (135% / วินาที)
 
-        function resizeCanvases() {
-            const dpr = Math.min(window.devicePixelRatio || 1, 2);
-            bgCanvas.width = window.innerWidth * dpr;
-            bgCanvas.height = window.innerHeight * dpr;
-            bgCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        // โซนสมมาตร 7 ส่วนรวม 100.0% พอดี (กึ่งกลาง x10 อยู่ที่ 45.5% - 54.5%)
+        const MINIGAME_ZONES = [
+            { idx: 0, start: 0.0,  end: 20.5, mult: 2,  label: 'x2' },
+            { idx: 1, start: 20.5, end: 35.5, mult: 5,  label: 'x5' },
+            { idx: 2, start: 35.5, end: 45.5, mult: 7,  label: 'x7' },
+            { idx: 3, start: 45.5, end: 54.5, mult: 10, label: 'x10' },
+            { idx: 4, start: 54.5, end: 64.5, mult: 7,  label: 'x7' },
+            { idx: 5, start: 64.5, end: 79.5, mult: 5,  label: 'x5' },
+            { idx: 6, start: 79.5, end: 100.0, mult: 2, label: 'x2' }
+        ];
 
-            fxCanvas.width = window.innerWidth * dpr;
-            fxCanvas.height = window.innerHeight * dpr;
-            fxCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        }
+        const minigameState = {
+            phase: 'cooldown', // 'cooldown' | 'active' | 'result'
+            cooldownRemaining: MINIGAME_INTERVAL_SEC,
+            activeRemaining: MINIGAME_ACTIVE_DURATION,
+            resultRemaining: 0,
+            needlePos: 0, // 0 - 100 (%)
+            needleDir: 1, // 1 หรือ -1
+            trackTravelPx: 300
+        };
 
-        function initFallingEggs() {
-            const count = Math.min(26, Math.max(12, Math.floor(window.innerWidth / 60)));
-            fallingEggs = [];
-            for (let i = 0; i < count; i++) {
-                fallingEggs.push(createFallingEgg(true));
+        const minigameCardEl = document.getElementById('minigame-card');
+        const minigameTrackEl = document.getElementById('minigame-track');
+        const minigameNeedleEl = document.getElementById('minigame-needle');
+        const mgBaseLabelEl = document.getElementById('mg-base-label');
+        const mgTimeLeftEl = document.getElementById('mg-time-left');
+        const mgStatusTextEl = document.getElementById('mg-status-text');
+        const btnMinigameStopEl = document.getElementById('btn-minigame-stop');
+        const hudMinigameBadgeEl = document.getElementById('hud-minigame-badge');
+        const hudMinigameTimerEl = document.getElementById('hud-minigame-timer');
+        const mgZoneEls = Array.from(document.querySelectorAll('[data-mg-zone]'));
+
+        function refreshMinigameTrackMetrics() {
+            if (minigameTrackEl) {
+                const w = minigameTrackEl.clientWidth;
+                if (w > 20) {
+                    minigameState.trackTravelPx = Math.max(10, w - 6);
+                }
             }
         }
 
-        function createFallingEgg(randomY = false) {
-            const size = 26 + Math.random() * 34;
+        function getMinigameBase10sPool() {
+            return Math.max(10, Math.round(Math.max(cachedStats.eps, cachedStats.epc * 2) * 10));
+        }
+
+        function getMinigameZoneAt(posPct) {
+            const clamped = Math.max(0, Math.min(100, posPct));
+            for (let i = 0; i < MINIGAME_ZONES.length; i++) {
+                const z = MINIGAME_ZONES[i];
+                if (clamped >= z.start && (clamped < z.end || (i === MINIGAME_ZONES.length - 1 && clamped <= z.end))) {
+                    return z;
+                }
+            }
+            return MINIGAME_ZONES[0];
+        }
+
+        function startMinigameRound() {
+            minigameState.phase = 'active';
+            minigameState.activeRemaining = MINIGAME_ACTIVE_DURATION;
+            minigameState.needlePos = 0;
+            minigameState.needleDir = 1;
+
+            // ล้างไฮไลต์โซนชนะเดิม
+            for (let i = 0; i < mgZoneEls.length; i++) {
+                mgZoneEls[i].classList.remove('mg-zone-winner');
+            }
+
+            mgStatusTextEl.textContent = 'แตะที่แถบ กดปุ่ม STOP หรือกด Spacebar!';
+            mgStatusTextEl.className = 'text-[11px] sm:text-xs font-semibold text-eggshell-700 truncate';
+            btnMinigameStopEl.disabled = false;
+            btnMinigameStopEl.textContent = 'หยุดเข็ม! (STOP)';
+            btnMinigameStopEl.className = 'shrink-0 px-3.5 py-1.5 rounded-xl font-display font-extrabold text-xs sm:text-sm text-white bg-gradient-to-b from-rose-500 to-rose-600 border border-rose-900 shadow active:translate-y-0.5 cursor-pointer';
+
+            minigameCardEl.classList.remove('hidden');
+            refreshMinigameTrackMetrics();
+            minigameNeedleEl.style.transform = 'translate3d(0px, 0, 0)';
+
+            hudMinigameBadgeEl.className = 'bg-amber-400 text-amber-950 px-3 py-1.5 rounded-xl border border-amber-700 text-xs font-extrabold flex items-center gap-1.5 shadow-sm tabular-nums animate-pulse';
+            hudMinigameTimerEl.textContent = 'มินิเกมกำลังเล่น!';
+
+            soundEngine.playMinigameAppear();
+            refreshEggCenterCache();
+        }
+
+        function resolveMinigameStop() {
+            if (minigameState.phase !== 'active') return;
+
+            minigameState.phase = 'result';
+            minigameState.resultRemaining = MINIGAME_RESULT_DURATION;
+
+            const hitZone = getMinigameZoneAt(minigameState.needlePos);
+            const base10s = getMinigameBase10sPool();
+            const reward = Math.max(1, Math.round(base10s * hitZone.mult));
+
+            gameState.eggs += reward;
+            gameState.runEggs += reward;
+            gameState.totalEggsEarned += reward;
+
+            // ไฮไลต์โซนที่เข็มหยุด
+            if (mgZoneEls[hitZone.idx]) {
+                mgZoneEls[hitZone.idx].classList.add('mg-zone-winner');
+            }
+
+            btnMinigameStopEl.disabled = true;
+            btnMinigameStopEl.textContent = `ได้ ${hitZone.label}!`;
+            btnMinigameStopEl.className = 'shrink-0 px-3.5 py-1.5 rounded-xl font-display font-extrabold text-xs sm:text-sm text-amber-950 bg-gradient-to-b from-amber-300 to-amber-400 border border-amber-700 shadow';
+
+            mgStatusTextEl.textContent = `🎉 ยอดเยี่ยม! ${hitZone.label} รับทันที +${formatNumber(reward)} ฟอง!`;
+            mgStatusTextEl.className = hitZone.mult >= 10
+                ? 'text-xs sm:text-sm font-extrabold text-rose-700 truncate'
+                : 'text-xs sm:text-sm font-extrabold text-emerald-800 truncate';
+
+            hudMinigameBadgeEl.className = 'bg-emerald-100 text-emerald-900 px-3 py-1.5 rounded-xl border border-emerald-400 text-xs font-bold flex items-center gap-1.5 shadow-sm tabular-nums';
+            hudMinigameTimerEl.textContent = `รับโบนัส ${hitZone.label}!`;
+
+            // เอฟเฟกต์อนุภาคและตัวเลขลอยขึ้นที่ตำแหน่งเข็ม
+            const trackRect = minigameTrackEl.getBoundingClientRect();
+            const hitX = trackRect.width > 0
+                ? trackRect.left + (minigameState.needlePos / 100) * trackRect.width
+                : cachedEggCenter.x;
+            const hitY = trackRect.height > 0
+                ? trackRect.top + trackRect.height * 0.5
+                : cachedEggCenter.y - 80;
+
+            soundEngine.playMinigameHit(hitZone.mult);
+            spawnClickEffects(hitX, hitY, reward, hitZone.mult >= 7, hitZone.mult >= 10);
+            showToast(`🎯 มินิเกมตัวคูณ ${hitZone.label}! รับโบนัส +${formatNumber(reward)} ฟอง`);
+
+            updateAllUI();
+        }
+
+        function closeMinigameRound() {
+            minigameState.phase = 'cooldown';
+            minigameState.cooldownRemaining = MINIGAME_INTERVAL_SEC;
+            minigameCardEl.classList.add('hidden');
+            hudMinigameBadgeEl.className = 'bg-amber-50/95 text-amber-950 px-3 py-1.5 rounded-xl border border-amber-300 text-xs font-bold flex items-center gap-1.5 shadow-sm tabular-nums';
+            hudMinigameTimerEl.textContent = `มินิเกมใน: ${Math.ceil(minigameState.cooldownRemaining)}s`;
+            refreshEggCenterCache();
+        }
+
+        // รองรับการกดหยุดเข็มทั้งจากการแตะบนการ์ดมินิเกมและปุ่ม STOP
+        minigameCardEl.addEventListener('pointerdown', (e) => {
+            if (e.button !== undefined && e.button !== 0) return;
+            if (minigameState.phase === 'active') {
+                e.preventDefault();
+                e.stopPropagation();
+                resolveMinigameStop();
+            }
+        });
+
+        btnMinigameStopEl.addEventListener('pointerdown', (e) => {
+            if (e.button !== undefined && e.button !== 0) return;
+            if (minigameState.phase === 'active') {
+                e.preventDefault();
+                e.stopPropagation();
+                resolveMinigameStop();
+            }
+        });
+
+        /**
+         * ============================================================================
+         * 7. Canvas พื้นหลังความเร็วสูง: วาดสไปรท์ย่อส่วน 72x90px สูงสุด 16 ชิ้น
+         * ============================================================================
+         */
+        const bgCanvas = document.getElementById('bg-canvas');
+        const bgCtx = bgCanvas.getContext('2d', { alpha: true });
+        const fxCanvas = document.getElementById('fx-canvas');
+        const fxCtx = fxCanvas.getContext('2d', { alpha: true });
+
+        let canvasDpr = 1;
+        let viewW = window.innerWidth;
+        let viewH = window.innerHeight;
+        let fallingEggs = [];
+
+        function resizeCanvases() {
+            canvasDpr = Math.min(window.devicePixelRatio || 1, 1.5);
+            viewW = window.innerWidth;
+            viewH = window.innerHeight;
+
+            bgCanvas.width = Math.floor(viewW * canvasDpr);
+            bgCanvas.height = Math.floor(viewH * canvasDpr);
+
+            fxCanvas.width = Math.floor(viewW * canvasDpr);
+            fxCanvas.height = Math.floor(viewH * canvasDpr);
+        }
+
+        function createFallingEgg(randomY) {
+            const scale = 0.55 + Math.random() * 0.55;
             return {
-                x: Math.random() * window.innerWidth,
-                y: randomY ? Math.random() * window.innerHeight : -size * 1.8,
-                size,
-                speedY: 0.35 + Math.random() * 0.65,
-                swayAmp: 0.3 + Math.random() * 0.55,
-                swayFreq: 0.008 + Math.random() * 0.012,
+                x: Math.random() * viewW,
+                y: randomY ? Math.random() * viewH : -65,
+                scale,
+                speedY: 24 + Math.random() * 38,
+                swayAmp: 16 + Math.random() * 24,
+                swayFreq: 0.7 + Math.random() * 0.9,
                 swayPhase: Math.random() * Math.PI * 2,
                 rotation: Math.random() * Math.PI * 2,
-                rotSpeed: (Math.random() - 0.5) * 0.014,
-                opacity: 0.10 + Math.random() * 0.08 // จางสบายตา (0.10 - 0.18)
+                rotSpeed: (Math.random() - 0.5) * 0.85,
+                opacity: 0.11 + Math.random() * 0.08
             };
         }
 
-        function updateAndDrawBackgroundEggs() {
-            bgCtx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+        function initFallingEggs() {
+            const count = Math.min(16, Math.max(10, Math.floor(viewW / 90)));
+            fallingEggs = new Array(count);
+            for (let i = 0; i < count; i++) {
+                fallingEggs[i] = createFallingEgg(true);
+            }
+        }
 
-            const spriteReady = loadedSprites.idle.complete && loadedSprites.idle.naturalWidth > 0;
-            const aspect = spriteReady
-                ? (loadedSprites.idle.naturalWidth / loadedSprites.idle.naturalHeight)
-                : 0.8;
+        function updateAndDrawBackgroundEggs(dt) {
+            bgCtx.setTransform(1, 0, 0, 1, 0, 0);
+            bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
 
-            for (let i = 0; i < fallingEggs.length; i++) {
+            if (!bgEggSpriteReady) return;
+
+            const len = fallingEggs.length;
+            for (let i = 0; i < len; i++) {
                 const egg = fallingEggs[i];
-                egg.y += egg.speedY;
-                egg.swayPhase += egg.swayFreq;
-                egg.x += Math.sin(egg.swayPhase) * egg.swayAmp;
-                egg.rotation += egg.rotSpeed;
+                egg.y += egg.speedY * dt;
+                egg.swayPhase += egg.swayFreq * dt;
+                egg.rotation += egg.rotSpeed * dt;
 
-                if (egg.y > window.innerHeight + egg.size * 1.8) {
+                if (egg.y > viewH + 70) {
                     fallingEggs[i] = createFallingEgg(false);
                     continue;
                 }
 
-                bgCtx.save();
-                bgCtx.translate(egg.x, egg.y);
-                bgCtx.rotate(egg.rotation);
+                const drawX = (egg.x + Math.sin(egg.swayPhase) * egg.swayAmp) * canvasDpr;
+                const drawY = egg.y * canvasDpr;
+                const s = egg.scale * canvasDpr;
+                const cos = Math.cos(egg.rotation) * s;
+                const sin = Math.sin(egg.rotation) * s;
+
                 bgCtx.globalAlpha = egg.opacity;
-
-                const h = egg.size * 1.25;
-                const w = h * aspect;
-
-                if (spriteReady) {
-                    // วาดสำเนาจางๆ ของรูปไข่จริงของผู้เล่นที่ตกลงมา
-                    bgCtx.drawImage(loadedSprites.idle, -w / 2, -h / 2, w, h);
-                } else {
-                    // Fallback กรณีออฟไลน์และยังโหลดรูปไม่สำเร็จ
-                    bgCtx.beginPath();
-                    bgCtx.arc(0, 0, egg.size * 0.45, 0, Math.PI * 2);
-                    bgCtx.fillStyle = 'rgba(255, 255, 255, 0.45)';
-                    bgCtx.fill();
-                }
-
-                bgCtx.restore();
+                bgCtx.setTransform(cos, sin, -sin, cos, drawX, drawY);
+                bgCtx.drawImage(bgEggSprite, -36, -45, 72, 90);
             }
         }
 
         /**
          * ============================================================================
-         * 6. ระบบ Canvas เอฟเฟกต์ด้านหน้า (วงคลื่นกระแทก ประกายดาว และตัวเลขคะแนนลอย)
+         * 8. Object-Pooled Foreground Effects Canvas (Zero Garbage Collection on Click)
          * ============================================================================
          */
-        let sparkleParticles = [];
-        let shockwaves = [];
-        let floatingTexts = [];
+        const SHOCKWAVE_POOL_SIZE = 30;
+        const PARTICLE_POOL_SIZE = 120;
+        const FLOAT_TEXT_POOL_SIZE = 60;
 
-        function spawnClickEffects(x, y, gainAmount, isCrit, isMilestone = false) {
-            // 1. วงคลื่นกระแทกเรืองแสง (Luminous Shockwave Ring)
-            shockwaves.push({
-                x,
-                y,
-                radius: 14,
-                maxRadius: isMilestone ? 230 : (isCrit ? 130 : 82),
-                alpha: isCrit ? 0.90 : 0.68,
-                color: isMilestone ? '#F59E0B' : (isCrit ? '#FB7185' : '#FFFFFF'),
-                lineWidth: isMilestone ? 6 : (isCrit ? 4 : 2.5)
-            });
+        const shockwavePool = new Array(SHOCKWAVE_POOL_SIZE);
+        const particlePool = new Array(PARTICLE_POOL_SIZE);
+        const floatTextPool = new Array(FLOAT_TEXT_POOL_SIZE);
 
-            // 2. ประกายดาวและละอองพลังงาน (Sparkle & Star Bursts)
-            const count = isMilestone ? 30 : (isCrit ? 14 : 7);
-            const palette = ['#FFFFFF', '#FEF08A', '#FDE047', '#7DD3FC', '#FDBA74'];
-            for (let i = 0; i < count; i++) {
+        let nextShockwaveIdx = 0;
+        let nextParticleIdx = 0;
+        let nextFloatTextIdx = 0;
+
+        for (let i = 0; i < SHOCKWAVE_POOL_SIZE; i++) {
+            shockwavePool[i] = { active: false, x: 0, y: 0, radius: 0, maxRadius: 80, alpha: 0, color: '#FFFFFF', lineWidth: 2 };
+        }
+        for (let i = 0; i < PARTICLE_POOL_SIZE; i++) {
+            particlePool[i] = { active: false, x: 0, y: 0, vx: 0, vy: 0, size: 4, rotation: 0, rotSpeed: 0, color: '#FFFFFF', isStar: true, alpha: 0, decay: 1.5 };
+        }
+        for (let i = 0; i < FLOAT_TEXT_POOL_SIZE; i++) {
+            floatTextPool[i] = { active: false, x: 0, y: 0, vy: 0, text: '', color: '#78350F', fontSize: 21, alpha: 0, life: 0 };
+        }
+
+        const PARTICLE_PALETTE = ['#FFFFFF', '#FEF08A', '#FDE047', '#7DD3FC', '#FDBA74'];
+
+        function spawnClickEffects(x, y, gainAmount, isCrit, isMilestone) {
+            const sw = shockwavePool[nextShockwaveIdx];
+            nextShockwaveIdx = (nextShockwaveIdx + 1) % SHOCKWAVE_POOL_SIZE;
+            sw.active = true;
+            sw.x = x;
+            sw.y = y;
+            sw.radius = 14;
+            sw.maxRadius = isMilestone ? 220 : (isCrit ? 125 : 80);
+            sw.alpha = isCrit ? 0.88 : 0.65;
+            sw.color = isMilestone ? '#F59E0B' : (isCrit ? '#FB7185' : '#FFFFFF');
+            sw.lineWidth = isMilestone ? 5 : (isCrit ? 3.5 : 2.5);
+
+            const pCount = isMilestone ? 24 : (isCrit ? 12 : 6);
+            for (let i = 0; i < pCount; i++) {
+                const p = particlePool[nextParticleIdx];
+                nextParticleIdx = (nextParticleIdx + 1) % PARTICLE_POOL_SIZE;
                 const angle = Math.random() * Math.PI * 2;
-                const speed = (isMilestone ? 4.8 : 2.5) + Math.random() * (isCrit ? 6.8 : 4.4);
-                sparkleParticles.push({
-                    x,
-                    y,
-                    vx: Math.cos(angle) * speed,
-                    vy: Math.sin(angle) * speed - (1.8 + Math.random() * 2.2),
-                    gravity: 0.16,
-                    size: (isMilestone ? 6.5 : 4.2) + Math.random() * 4.5,
-                    rotation: Math.random() * Math.PI * 2,
-                    rotSpeed: (Math.random() - 0.5) * 0.24,
-                    color: palette[Math.floor(Math.random() * palette.length)],
-                    isStar: Math.random() > 0.35,
-                    alpha: 1,
-                    decay: 0.022 + Math.random() * 0.015
-                });
+                const speed = (isMilestone ? 260 : 140) + Math.random() * (isCrit ? 340 : 220);
+                p.active = true;
+                p.x = x;
+                p.y = y;
+                p.vx = Math.cos(angle) * speed;
+                p.vy = Math.sin(angle) * speed - (95 + Math.random() * 110);
+                p.size = (isMilestone ? 6 : 4) + Math.random() * 4;
+                p.rotation = Math.random() * Math.PI * 2;
+                p.rotSpeed = (Math.random() - 0.5) * 12;
+                p.color = PARTICLE_PALETTE[(Math.random() * 5) | 0];
+                p.isStar = Math.random() > 0.35;
+                p.alpha = 1.0;
+                p.decay = 1.35 + Math.random() * 0.7;
             }
 
-            // 3. ตัวเลขคะแนนลอยขึ้นพร้อมแรงโน้มถ่วงและจางหาย
-            const offsetX = (Math.random() - 0.5) * 60;
-            const offsetY = -18 + (Math.random() - 0.5) * 20;
-            floatingTexts.push({
-                x: x + offsetX,
-                y: y + offsetY,
-                vy: isCrit ? -2.8 : -2.1,
-                text: isCrit ? `CRIT! +${formatNumber(gainAmount)}` : `+${formatNumber(gainAmount)}`,
-                color: isCrit ? '#E11D48' : '#78350F',
-                stroke: '#FFFFFF',
-                scale: isCrit ? 1.28 : 1.0,
-                alpha: 1,
-                life: 1.0
-            });
+            const ft = floatTextPool[nextFloatTextIdx];
+            nextFloatTextIdx = (nextFloatTextIdx + 1) % FLOAT_TEXT_POOL_SIZE;
+            ft.active = true;
+            ft.x = x + (Math.random() - 0.5) * 56;
+            ft.y = y - 16 + (Math.random() - 0.5) * 18;
+            ft.vy = isCrit ? -155 : -118;
+            ft.text = isCrit ? `CRIT! +${formatNumber(gainAmount)}` : `+${formatNumber(gainAmount)}`;
+            ft.color = isCrit ? '#E11D48' : '#78350F';
+            ft.fontSize = isCrit ? 26 : 20;
+            ft.alpha = 1.0;
+            ft.life = 0.85;
         }
 
-        function drawSparkleStar(ctx, r) {
-            ctx.beginPath();
-            ctx.moveTo(0, -r);
-            ctx.quadraticCurveTo(0, 0, r, 0);
-            ctx.quadraticCurveTo(0, 0, 0, r);
-            ctx.quadraticCurveTo(0, 0, -r, 0);
-            ctx.quadraticCurveTo(0, 0, 0, -r);
-            ctx.closePath();
-            ctx.fill();
-        }
+        function updateAndDrawFx(dt) {
+            fxCtx.setTransform(1, 0, 0, 1, 0, 0);
+            fxCtx.clearRect(0, 0, fxCanvas.width, fxCanvas.height);
 
-        function updateAndDrawFx() {
-            fxCtx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+            fxCtx.setTransform(canvasDpr, 0, 0, canvasDpr, 0, 0);
+            for (let i = 0; i < SHOCKWAVE_POOL_SIZE; i++) {
+                const sw = shockwavePool[i];
+                if (!sw.active) continue;
 
-            // วาดวงคลื่นกระแทก
-            for (let i = shockwaves.length - 1; i >= 0; i--) {
-                const sw = shockwaves[i];
-                sw.radius += (sw.maxRadius - sw.radius) * 0.16;
-                sw.alpha -= 0.035;
-
+                sw.radius += (sw.maxRadius - sw.radius) * Math.min(1, 10 * dt);
+                sw.alpha -= 2.1 * dt;
                 if (sw.alpha <= 0) {
-                    shockwaves.splice(i, 1);
+                    sw.active = false;
                     continue;
                 }
 
-                fxCtx.save();
+                fxCtx.globalAlpha = sw.alpha;
+                fxCtx.strokeStyle = sw.color;
+                fxCtx.lineWidth = sw.lineWidth;
                 fxCtx.beginPath();
                 fxCtx.arc(sw.x, sw.y, sw.radius, 0, Math.PI * 2);
-                fxCtx.strokeStyle = sw.color;
-                fxCtx.globalAlpha = sw.alpha;
-                fxCtx.lineWidth = sw.lineWidth;
                 fxCtx.stroke();
-                fxCtx.restore();
             }
 
-            // วาดประกายดาวและละอองพลังงาน
-            for (let i = sparkleParticles.length - 1; i >= 0; i--) {
-                const p = sparkleParticles[i];
-                p.x += p.vx;
-                p.y += p.vy;
-                p.vy += p.gravity;
-                p.rotation += p.rotSpeed;
-                p.alpha -= p.decay;
+            for (let i = 0; i < PARTICLE_POOL_SIZE; i++) {
+                const p = particlePool[i];
+                if (!p.active) continue;
+
+                p.x += p.vx * dt;
+                p.y += p.vy * dt;
+                p.vy += 560 * dt;
+                p.rotation += p.rotSpeed * dt;
+                p.alpha -= p.decay * dt;
 
                 if (p.alpha <= 0) {
-                    sparkleParticles.splice(i, 1);
+                    p.active = false;
                     continue;
                 }
 
-                fxCtx.save();
-                fxCtx.translate(p.x, p.y);
-                fxCtx.rotate(p.rotation);
+                const cos = Math.cos(p.rotation) * canvasDpr;
+                const sin = Math.sin(p.rotation) * canvasDpr;
+                fxCtx.setTransform(cos, sin, -sin, cos, p.x * canvasDpr, p.y * canvasDpr);
                 fxCtx.globalAlpha = p.alpha;
                 fxCtx.fillStyle = p.color;
 
+                const r = p.size;
+                fxCtx.beginPath();
                 if (p.isStar) {
-                    drawSparkleStar(fxCtx, p.size * 1.4);
+                    const sr = r * 1.35;
+                    fxCtx.moveTo(0, -sr);
+                    fxCtx.quadraticCurveTo(0, 0, sr, 0);
+                    fxCtx.quadraticCurveTo(0, 0, 0, sr);
+                    fxCtx.quadraticCurveTo(0, 0, -sr, 0);
+                    fxCtx.quadraticCurveTo(0, 0, 0, -sr);
                 } else {
-                    fxCtx.beginPath();
-                    fxCtx.arc(0, 0, p.size * 0.65, 0, Math.PI * 2);
-                    fxCtx.fill();
+                    fxCtx.arc(0, 0, r * 0.65, 0, Math.PI * 2);
                 }
-                fxCtx.restore();
+                fxCtx.fill();
             }
 
-            // วาดตัวเลขคะแนนลอยขึ้น
-            for (let i = floatingTexts.length - 1; i >= 0; i--) {
-                const ft = floatingTexts[i];
-                ft.y += ft.vy;
-                ft.vy *= 0.96;
-                ft.life -= 0.022;
-                ft.alpha = Math.max(0, ft.life);
+            fxCtx.setTransform(canvasDpr, 0, 0, canvasDpr, 0, 0);
+            fxCtx.textAlign = 'center';
+            let currentFontSize = 0;
+
+            for (let i = 0; i < FLOAT_TEXT_POOL_SIZE; i++) {
+                const ft = floatTextPool[i];
+                if (!ft.active) continue;
+
+                ft.y += ft.vy * dt;
+                ft.vy *= Math.pow(0.08, dt);
+                ft.life -= dt;
+                ft.alpha = ft.life > 0.25 ? 1.0 : Math.max(0, ft.life / 0.25);
 
                 if (ft.life <= 0) {
-                    floatingTexts.splice(i, 1);
+                    ft.active = false;
                     continue;
                 }
 
-                fxCtx.save();
+                if (currentFontSize !== ft.fontSize) {
+                    currentFontSize = ft.fontSize;
+                    fxCtx.font = `800 ${currentFontSize}px 'Kanit', sans-serif`;
+                }
+
                 fxCtx.globalAlpha = ft.alpha;
-                fxCtx.font = `800 ${Math.round(21 * ft.scale)}px 'Kanit', sans-serif`;
-                fxCtx.textAlign = 'center';
-                fxCtx.lineWidth = 4;
-                fxCtx.strokeStyle = ft.stroke;
-                fxCtx.strokeText(ft.text, ft.x, ft.y);
+                fxCtx.fillStyle = 'rgba(255, 255, 255, 0.92)';
+                fxCtx.fillText(ft.text, ft.x - 1.5, ft.y);
+                fxCtx.fillText(ft.text, ft.x + 1.5, ft.y);
+                fxCtx.fillText(ft.text, ft.x, ft.y - 1.5);
+                fxCtx.fillText(ft.text, ft.x, ft.y + 1.5);
+
                 fxCtx.fillStyle = ft.color;
                 fxCtx.fillText(ft.text, ft.x, ft.y);
-                fxCtx.restore();
             }
+
+            fxCtx.globalAlpha = 1.0;
         }
 
         /**
          * ============================================================================
-         * 7. การโต้ตอบกับตัวละครไข่จริงของผู้เล่น (0ms Sprite Swap & 2D Spring Physics)
+         * 9. แคชอ้างอิง DOM และระบบ Dirty-Checking (อัปเดตเฉพาะตัวเลขที่เปลี่ยนจริง)
          * ============================================================================
          */
-        const eggStageBtn = document.getElementById('egg-stage-btn');
-        const eggSpriteIdle = document.getElementById('egg-sprite-idle');
-        const eggSpritePressed = document.getElementById('egg-sprite-pressed');
-        const eggAura = document.getElementById('egg-aura');
-        const eggSunburst = document.getElementById('egg-sunburst');
-        const milestoneBurstRing = document.getElementById('milestone-burst-ring');
-
-        // สลับรูปภาพทันทีแบบ 0ms ไม่มีกระพริบ
-        function setEggPressedVisual(showPressed) {
-            if (eggPhysics.isShowingPressed === showPressed) return;
-            eggPhysics.isShowingPressed = showPressed;
-            if (showPressed) {
-                eggSpritePressed.style.opacity = '1';
-                eggSpriteIdle.style.opacity = '0';
-            } else {
-                eggSpritePressed.style.opacity = '0';
-                eggSpriteIdle.style.opacity = '1';
-            }
-        }
-
-        function handleEggClick(clientX, clientY) {
-            const stats = getPlayerStats();
-            const tierInfo = getCurrentTierInfo();
-
-            // อัปเดตคอมโบและเกจ Fever
-            eggPhysics.comboCount += 1;
-            eggPhysics.feverEnergy = Math.min(100, eggPhysics.feverEnergy + 4.5);
-            eggPhysics.comboDecayTimer = 1.35;
-            const feverMult = getFeverMultiplier();
-
-            // ตรวจสอบคริติคอล
-            const isCrit = Math.random() * 100 < stats.critChance;
-            let rawGain = stats.epc * feverMult;
-            if (isCrit) {
-                rawGain *= stats.critMult;
-            }
-            const gain = Math.max(1, Math.round(rawGain));
-
-            // สะสมจำนวนไข่และเป้าหมายระดับถัดไป
-            gameState.eggs += gain;
-            gameState.totalEggsEarned += gain;
-            gameState.totalClicks += 1;
-            gameState.tierProgress += gain;
-
-            // ฟิสิกส์ 2D Squash-and-Stretch + ขยายร่างใหญ่ขึ้นตามเกจ Fever
-            const feverExpansion = (eggPhysics.feverEnergy / 100) * 0.30; // ขยายสูงสุด +30%
-            eggPhysics.targetScale = 1.0 + feverExpansion;
-            eggPhysics.velX += isCrit ? 5.2 : 3.4;
-            eggPhysics.velY += isCrit ? 4.4 : 2.8;
-            eggPhysics.rotVel += (Math.random() - 0.5) * (isCrit ? 18 : 11);
-
-            // สลับเป็นรูปสถานะตอนกดทันที และตั้งเวลาค้างไว้ 150ms หลังปล่อยนิ้ว
-            eggPhysics.pressedUntil = performance.now() + 150;
-            setEggPressedVisual(true);
-
-            // เล่นเสียงป๊อปสังเคราะห์
-            const feverRatio = eggPhysics.feverEnergy / 100;
-            soundEngine.playPop(feverRatio, isCrit);
-
-            // คำนวณพิกัดแสดงเอฟเฟกต์
-            let fxX = clientX;
-            let fxY = clientY;
-            if (!fxX || !fxY) {
-                const rect = eggStageBtn.getBoundingClientRect();
-                fxX = rect.left + rect.width / 2;
-                fxY = rect.top + rect.height / 2;
-            }
-
-            // ตรวจสอบว่าครบเป้าหมายเลื่อนระดับหรือไม่
-            if (gameState.tierProgress >= tierInfo.maxTarget) {
-                triggerMilestoneAdvance(tierInfo, fxX, fxY);
-            } else {
-                spawnClickEffects(fxX, fxY, gain, isCrit, false);
-            }
-
-            updateUI();
-        }
-
-        function triggerMilestoneAdvance(tierInfo, fxX, fxY) {
-            gameState.eggs += tierInfo.bonus;
-            gameState.totalEggsEarned += tierInfo.bonus;
-            gameState.tierLevel += 1;
-            gameState.tierProgress = 0;
-
-            eggPhysics.scaleX = 1.38;
-            eggPhysics.scaleY = 1.38;
-            eggPhysics.velX = 2.0;
-            eggPhysics.velY = 2.0;
-            soundEngine.playCelebration();
-            spawnClickEffects(fxX, fxY, tierInfo.bonus, true, true);
-
-            milestoneBurstRing.classList.remove('milestone-flash-anim');
-            void milestoneBurstRing.offsetWidth;
-            milestoneBurstRing.classList.add('milestone-flash-anim');
-
-            const nextTier = getCurrentTierInfo();
-            showToast(`🎉 เลื่อนระดับสำเร็จ! รับรางวัล +${formatNumber(tierInfo.bonus)} สู่ "${nextTier.name}"`);
-        }
-
-        // รองรับ Pointer Events (เมาส์และสัมผัสหน้าจอ)
-        eggStageBtn.addEventListener('pointerdown', (e) => {
-            if (e.button !== undefined && e.button !== 0) return;
-            e.preventDefault();
-            eggPhysics.isPointerDown = true;
-            handleEggClick(e.clientX, e.clientY);
-        });
-
-        const releasePointerState = () => {
-            if (!eggPhysics.isPointerDown) return;
-            eggPhysics.isPointerDown = false;
-            eggPhysics.pressedUntil = performance.now() + 150;
+        const uiRefs = {
+            headerCrystals: document.getElementById('header-crystals'),
+            headerRebirthCount: document.getElementById('header-rebirth-count'),
+            ascensionBadge: document.getElementById('ui-ascension-badge'),
+            eggs: document.getElementById('ui-eggs'),
+            eps: document.getElementById('ui-eps'),
+            epc: document.getElementById('ui-epc'),
+            crit: document.getElementById('ui-crit'),
+            critMult: document.getElementById('ui-crit-mult'),
+            totalClicks: document.getElementById('ui-total-clicks'),
+            runEggs: document.getElementById('ui-run-eggs'),
+            tierBadge: document.getElementById('ui-tier-badge'),
+            tierName: document.getElementById('ui-tier-name'),
+            tierGoal: document.getElementById('ui-tier-goal'),
+            tierPct: document.getElementById('ui-tier-pct'),
+            tierBar: document.getElementById('ui-tier-bar'),
+            feverBar: document.getElementById('ui-fever-bar'),
+            comboMult: document.getElementById('ui-combo-mult'),
+            feverLabel: document.getElementById('ui-fever-label'),
+            rebirthReadyDot: document.getElementById('rebirth-ready-dot'),
+            rbCount: document.getElementById('rb-count'),
+            rbCrystals: document.getElementById('rb-crystals'),
+            rbCrystalBonus: document.getElementById('rb-crystal-bonus'),
+            rbTotalMult: document.getElementById('rb-total-mult'),
+            rbPendingCrystals: document.getElementById('rb-pending-crystals'),
+            rbNextBar: document.getElementById('rb-next-bar'),
+            rbProgressLabel: document.getElementById('rb-progress-label'),
+            rbNextCrystalReq: document.getElementById('rb-next-crystal-req'),
+            btnTriggerRebirth: document.getElementById('btn-trigger-rebirth'),
+            btnRebirthText: document.getElementById('btn-rebirth-text'),
+            upgradesList: document.getElementById('upgrades-list'),
+            rebirthSkillsList: document.getElementById('rebirth-skills-list'),
+            upgradeCards: {},
+            rebirthSkillCards: {}
         };
 
-        window.addEventListener('pointerup', releasePointerState);
-        window.addEventListener('pointercancel', releasePointerState);
-        eggStageBtn.addEventListener('pointerleave', () => {
-            if (eggPhysics.isPointerDown) {
-                releasePointerState();
-            }
-        });
+        const lastUiState = {
+            headerCrystals: '',
+            headerRebirthCount: '',
+            ascensionBadge: '',
+            eggs: '',
+            eps: '',
+            epc: '',
+            crit: '',
+            critMult: '',
+            totalClicks: '',
+            runEggs: '',
+            tierBadge: '',
+            tierName: '',
+            tierGoal: '',
+            tierPct: -1,
+            feverPct: -1,
+            comboMult: '',
+            isMaxFever: null,
+            rebirthReady: null,
+            mgBaseLabel: '',
+            rbCount: '',
+            rbCrystals: '',
+            rbCrystalBonus: '',
+            rbTotalMult: '',
+            rbPendingCrystals: '',
+            rbNextPct: -1,
+            rbProgressLabel: '',
+            rbNextCrystalReq: '',
+            cards: {},
+            skillCards: {}
+        };
 
-        // รองรับ Spacebar / Enter
-        eggStageBtn.addEventListener('keydown', (e) => {
-            if ((e.code === 'Space' || e.code === 'Enter') && !e.repeat) {
-                e.preventDefault();
-                eggPhysics.isPointerDown = true;
-                handleEggClick();
-            }
-        });
+        function renderUpgradeCardsOnce() {
+            uiRefs.upgradesList.innerHTML = '';
 
-        eggStageBtn.addEventListener('keyup', (e) => {
-            if (e.code === 'Space' || e.code === 'Enter') {
-                releasePointerState();
-            }
-        });
-
-        /**
-         * ============================================================================
-         * 8. อีเวนต์ไข่ทองคำโบนัสลอยผ่านจอ (ใช้รูปไข่จริงของผู้เล่น + ฟิลเตอร์สีทอง)
-         * ============================================================================
-         */
-        const goldenBonusLayer = document.getElementById('golden-bonus-layer');
-
-        function spawnGoldenBonusEvent() {
-            const btn = document.createElement('button');
-            btn.type = 'button';
-            btn.className = 'pointer-events-auto fixed z-30 cursor-pointer select-none focus:outline-none flex flex-col items-center transition-transform active:scale-90';
-            btn.setAttribute('aria-label', 'เก็บไข่ทองคำโบนัส');
-
-            const startFromLeft = Math.random() > 0.5;
-            const startY = 18 + Math.random() * 54;
-            btn.style.top = `${startY}vh`;
-            btn.style.left = startFromLeft ? '-90px' : 'calc(100vw + 90px)';
-
-            btn.innerHTML = `
-                <img src="${CUSTOM_EGG_URLS.idle}"
-                     alt="ไข่ทองคำโบนัส"
-                     draggable="false"
-                     class="golden-bonus-sprite w-16 h-20 sm:w-20 sm:h-24 object-contain pointer-events-none" />
-                <span class="mt-0.5 bg-amber-900/90 text-amber-100 text-[11px] font-bold px-2.5 py-0.5 rounded-full border border-amber-300 shadow-md">
-                    ✨ ไข่ทองคำโบนัส!
-                </span>
-            `;
-
-            goldenBonusLayer.appendChild(btn);
-
-            const duration = 9500;
-            const startTime = performance.now();
-            let collected = false;
-
-            btn.addEventListener('pointerdown', (e) => {
-                e.stopPropagation();
-                if (collected) return;
-                collected = true;
-
-                const stats = getPlayerStats();
-                const bonus = Math.max(60, Math.round(stats.eps * 30 + stats.epc * 50));
-                gameState.eggs += bonus;
-                gameState.totalEggsEarned += bonus;
-
-                soundEngine.playCelebration();
-                spawnClickEffects(e.clientX, e.clientY, bonus, true, true);
-                showToast(`✨ เก็บไข่ทองคำโบนัสสำเร็จ! รับทันที +${formatNumber(bonus)}`);
-                updateUI();
-                if (btn.parentNode) btn.parentNode.removeChild(btn);
-            });
-
-            function animateGoldenDrift(now) {
-                if (collected || !btn.parentNode) return;
-                const progress = (now - startTime) / duration;
-                if (progress >= 1) {
-                    btn.parentNode.removeChild(btn);
-                    return;
-                }
-                const travelWidth = window.innerWidth + 180;
-                const currentX = startFromLeft
-                    ? (-90 + progress * travelWidth)
-                    : (window.innerWidth + 90 - progress * travelWidth);
-                btn.style.left = `${currentX}px`;
-                requestAnimationFrame(animateGoldenDrift);
-            }
-
-            requestAnimationFrame(animateGoldenDrift);
-        }
-
-        /**
-         * ============================================================================
-         * 9. ระบบสร้างและอัปเดต UI ร้านค้าอัพเกรด (Eggshell Textured Cards)
-         * ============================================================================
-         */
-        const upgradesListEl = document.getElementById('upgrades-list');
-
-        function renderUpgradeCards() {
-            upgradesListEl.innerHTML = '';
-
-            UPGRADE_DEFINITIONS.forEach(def => {
+            for (let i = 0; i < UPGRADE_DEFINITIONS.length; i++) {
+                const def = UPGRADE_DEFINITIONS[i];
                 const card = document.createElement('div');
-                card.id = `upg-card-${def.id}`;
-                card.className = 'eggshell-card rounded-2xl p-3 sm:p-3.5 cursor-pointer flex items-center justify-between gap-3';
+                card.className = 'eggshell-card locked rounded-2xl p-3 sm:p-3.5 cursor-pointer flex items-center justify-between gap-3';
                 card.setAttribute('role', 'button');
                 card.setAttribute('tabindex', '0');
 
                 card.innerHTML = `
                     <div class="flex items-center gap-3 min-w-0 flex-1">
-                        <div class="w-12 h-12 shrink-0 rounded-2xl bg-gradient-to-br from-amber-100 to-eggshell-300 border border-eggshell-500 flex items-center justify-center text-2xl shadow-2xs">
+                        <div class="w-12 h-12 shrink-0 rounded-2xl bg-gradient-to-br from-amber-100 to-eggshell-200 border border-eggshell-500 flex items-center justify-center text-2xl">
                             ${def.icon}
                         </div>
                         <div class="min-w-0 flex-1">
                             <div class="flex items-center gap-2">
                                 <h3 class="font-bold text-sm sm:text-base text-eggshell-800 truncate">${def.name}</h3>
-                                <span id="upg-lvl-${def.id}" class="shrink-0 text-[11px] font-bold bg-eggshell-500/20 text-eggshell-800 px-2 py-0.5 rounded-md border border-eggshell-500/40">
+                                <span data-role="lvl" class="shrink-0 text-[11px] font-bold bg-eggshell-500/20 text-eggshell-800 px-2 py-0.5 rounded-md border border-eggshell-500/40">
                                     Lv.0
                                 </span>
                             </div>
                             <p class="text-[11px] sm:text-xs text-eggshell-700 truncate mt-0.5">${def.desc}</p>
                             <div class="mt-1 flex flex-wrap gap-1.5">
-                                <span id="upg-perk-${def.id}" class="text-[11px] font-semibold text-amber-900 bg-amber-400/25 px-2 py-0.5 rounded-md">
+                                <span data-role="perk" class="text-[11px] font-semibold text-amber-900 bg-amber-400/25 px-2 py-0.5 rounded-md">
                                     +1 พลังคลิก
                                 </span>
                             </div>
@@ -1330,15 +1998,19 @@
                     </div>
 
                     <div class="shrink-0 flex flex-col items-end">
-                        <div id="upg-btn-${def.id}" class="px-3 py-2 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-1.5 shadow-2xs border transition-colors">
+                        <div data-role="btn" class="px-3 py-2 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-1.5 border bg-eggshell-200 border-eggshell-500/50 text-eggshell-700">
                             <img src="${CUSTOM_EGG_URLS.idle}" alt="" class="w-3.5 h-4 object-contain pointer-events-none" />
-                            <span id="upg-cost-${def.id}" class="tabular-nums">0</span>
+                            <span data-role="cost" class="tabular-nums">0</span>
                         </div>
-                        <span id="upg-buy-tag-${def.id}" class="text-[10px] font-semibold text-eggshell-700 mt-1">ซื้อ x1</span>
+                        <span data-role="tag" class="text-[10px] font-semibold text-eggshell-700 mt-1">ซื้อ x1</span>
                     </div>
                 `;
 
-                card.addEventListener('click', () => buyUpgrade(def.id));
+                card.addEventListener('pointerdown', (e) => {
+                    if (e.button !== undefined && e.button !== 0) return;
+                    buyUpgrade(def.id);
+                });
+
                 card.addEventListener('keydown', (e) => {
                     if (e.code === 'Space' || e.code === 'Enter') {
                         e.preventDefault();
@@ -1346,8 +2018,97 @@
                     }
                 });
 
-                upgradesListEl.appendChild(card);
-            });
+                uiRefs.upgradesList.appendChild(card);
+
+                uiRefs.upgradeCards[def.id] = {
+                    card,
+                    lvlEl: card.querySelector('[data-role="lvl"]'),
+                    perkEl: card.querySelector('[data-role="perk"]'),
+                    btnEl: card.querySelector('[data-role="btn"]'),
+                    costEl: card.querySelector('[data-role="cost"]'),
+                    tagEl: card.querySelector('[data-role="tag"]')
+                };
+
+                lastUiState.cards[def.id] = {
+                    lvlStr: '',
+                    perkStr: '',
+                    costStr: '',
+                    tagStr: '',
+                    canAfford: null
+                };
+            }
+        }
+
+        function renderRebirthSkillCardsOnce() {
+            uiRefs.rebirthSkillsList.innerHTML = '';
+
+            for (let i = 0; i < REBIRTH_SKILL_DEFINITIONS.length; i++) {
+                const skill = REBIRTH_SKILL_DEFINITIONS[i];
+                const card = document.createElement('div');
+                card.className = 'rebirth-skill-card locked rounded-2xl p-3 sm:p-3.5 cursor-pointer flex items-center justify-between gap-3';
+                card.setAttribute('role', 'button');
+                card.setAttribute('tabindex', '0');
+
+                card.innerHTML = `
+                    <div class="flex items-center gap-3 min-w-0 flex-1">
+                        <div class="w-11 h-11 shrink-0 rounded-2xl bg-gradient-to-br from-violet-100 to-indigo-200 border border-violet-400 flex items-center justify-center text-xl">
+                            ${skill.icon}
+                        </div>
+                        <div class="min-w-0 flex-1">
+                            <div class="flex items-center gap-2">
+                                <h4 class="font-bold text-sm sm:text-base text-eggshell-800 truncate">${skill.name}</h4>
+                                <span data-role="lvl" class="shrink-0 text-[11px] font-bold bg-violet-600/15 text-violet-900 px-2 py-0.5 rounded-md border border-violet-500/35">
+                                    Lv.0
+                                </span>
+                            </div>
+                            <p class="text-[11px] sm:text-xs text-eggshell-700 truncate mt-0.5">${skill.desc}</p>
+                            <div class="mt-1">
+                                <span data-role="effect" class="text-[11px] font-semibold text-violet-900 bg-violet-400/20 px-2 py-0.5 rounded-md">
+                                    +0%
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="shrink-0 flex flex-col items-end">
+                        <div data-role="btn" class="px-3 py-2 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-1 border bg-eggshell-200 border-eggshell-500/50 text-eggshell-700">
+                            <span>💎</span>
+                            <span data-role="cost" class="tabular-nums">1</span>
+                        </div>
+                        <span data-role="tag" class="text-[10px] font-semibold text-eggshell-700 mt-1">อัปเกรดถาวร</span>
+                    </div>
+                `;
+
+                card.addEventListener('pointerdown', (e) => {
+                    if (e.button !== undefined && e.button !== 0) return;
+                    buyRebirthSkill(skill.id);
+                });
+
+                card.addEventListener('keydown', (e) => {
+                    if (e.code === 'Space' || e.code === 'Enter') {
+                        e.preventDefault();
+                        buyRebirthSkill(skill.id);
+                    }
+                });
+
+                uiRefs.rebirthSkillsList.appendChild(card);
+
+                uiRefs.rebirthSkillCards[skill.id] = {
+                    card,
+                    lvlEl: card.querySelector('[data-role="lvl"]'),
+                    effectEl: card.querySelector('[data-role="effect"]'),
+                    btnEl: card.querySelector('[data-role="btn"]'),
+                    costEl: card.querySelector('[data-role="cost"]'),
+                    tagEl: card.querySelector('[data-role="tag"]')
+                };
+
+                lastUiState.skillCards[skill.id] = {
+                    lvlStr: '',
+                    effectStr: '',
+                    costStr: '',
+                    stateKey: ''
+                };
+            }
         }
 
         function getPurchaseDetails(def, currentLvl) {
@@ -1363,6 +2124,535 @@
             };
         }
 
+        function updateHUDDirty() {
+            const crystalsStr = formatNumber(gameState.rebirthCrystals);
+            if (lastUiState.headerCrystals !== crystalsStr) {
+                lastUiState.headerCrystals = crystalsStr;
+                uiRefs.headerCrystals.textContent = crystalsStr;
+            }
+
+            const rbCountStr = formatNumber(gameState.rebirthCount);
+            if (lastUiState.headerRebirthCount !== rbCountStr) {
+                lastUiState.headerRebirthCount = rbCountStr;
+                uiRefs.headerRebirthCount.textContent = rbCountStr;
+            }
+
+            const ascStr = `โบนัสจุติ x${cachedStats.ascensionMult.toFixed(2)}`;
+            if (lastUiState.ascensionBadge !== ascStr) {
+                lastUiState.ascensionBadge = ascStr;
+                uiRefs.ascensionBadge.textContent = ascStr;
+            }
+
+            const eggsStr = formatNumber(gameState.eggs);
+            if (lastUiState.eggs !== eggsStr) {
+                lastUiState.eggs = eggsStr;
+                uiRefs.eggs.textContent = eggsStr;
+            }
+
+            const epsStr = formatNumber(cachedStats.eps);
+            if (lastUiState.eps !== epsStr) {
+                lastUiState.eps = epsStr;
+                uiRefs.eps.textContent = epsStr;
+            }
+
+            const epcStr = formatNumber(cachedStats.epc);
+            if (lastUiState.epc !== epcStr) {
+                lastUiState.epc = epcStr;
+                uiRefs.epc.textContent = epcStr;
+            }
+
+            const critStr = cachedStats.critChance.toFixed(1).replace(/\.0$/, '');
+            if (lastUiState.crit !== critStr) {
+                lastUiState.crit = critStr;
+                uiRefs.crit.textContent = critStr;
+            }
+
+            const critMultStr = cachedStats.critMult.toFixed(1).replace(/\.0$/, '');
+            if (lastUiState.critMult !== critMultStr) {
+                lastUiState.critMult = critMultStr;
+                uiRefs.critMult.textContent = critMultStr;
+            }
+
+            const clicksStr = formatNumber(gameState.totalClicks);
+            if (lastUiState.totalClicks !== clicksStr) {
+                lastUiState.totalClicks = clicksStr;
+                uiRefs.totalClicks.textContent = clicksStr;
+            }
+
+            const runEggsStr = formatNumber(gameState.runEggs);
+            if (lastUiState.runEggs !== runEggsStr) {
+                lastUiState.runEggs = runEggsStr;
+                uiRefs.runEggs.textContent = runEggsStr;
+            }
+
+            // อัปเดตฐานรางวัล 10 วิ บนแถบมินิเกม
+            const mgBaseStr = `ฐาน 10 วิ: +${formatNumber(getMinigameBase10sPool())} ฟอง`;
+            if (lastUiState.mgBaseLabel !== mgBaseStr) {
+                lastUiState.mgBaseLabel = mgBaseStr;
+                mgBaseLabelEl.textContent = mgBaseStr;
+            }
+
+            // อัปเดตระดับวิวัฒนาการไข่ (Evolution Rank)
+            const rankInfo = getEvolutionRankInfo();
+            if (rankInfo.rankIdx > gameState.highestRankIdx) {
+                gameState.highestRankIdx = rankInfo.rankIdx;
+                triggerEvolutionRankUp(rankInfo);
+            }
+
+            const tierBadgeStr = `วิวัฒนาการ ${rankInfo.rankIdx + 1}`;
+            if (lastUiState.tierBadge !== tierBadgeStr) {
+                lastUiState.tierBadge = tierBadgeStr;
+                uiRefs.tierBadge.textContent = tierBadgeStr;
+            }
+
+            if (lastUiState.tierName !== rankInfo.name) {
+                lastUiState.tierName = rankInfo.name;
+                uiRefs.tierName.textContent = rankInfo.name;
+            }
+
+            const tierGoalStr = `${formatNumber(rankInfo.current)} / ${formatNumber(rankInfo.target)}`;
+            if (lastUiState.tierGoal !== tierGoalStr) {
+                lastUiState.tierGoal = tierGoalStr;
+                uiRefs.tierGoal.textContent = tierGoalStr;
+            }
+
+            if (lastUiState.tierPct !== rankInfo.pct) {
+                lastUiState.tierPct = rankInfo.pct;
+                uiRefs.tierPct.textContent = rankInfo.pct;
+                uiRefs.tierBar.style.width = `${rankInfo.pct}%`;
+            }
+
+            const feverPct = Math.round(eggPhysics.feverEnergy);
+            if (lastUiState.feverPct !== feverPct) {
+                lastUiState.feverPct = feverPct;
+                uiRefs.feverBar.style.width = `${feverPct}%`;
+            }
+
+            const feverMult = getFeverMultiplier();
+            const comboStr = `x${feverMult.toFixed(1)} (${eggPhysics.comboCount} คอมโบ)`;
+            if (lastUiState.comboMult !== comboStr) {
+                lastUiState.comboMult = comboStr;
+                uiRefs.comboMult.textContent = comboStr;
+            }
+
+            const isMaxFever = eggPhysics.feverEnergy >= 80;
+            if (lastUiState.isMaxFever !== isMaxFever) {
+                lastUiState.isMaxFever = isMaxFever;
+                if (isMaxFever) {
+                    uiRefs.feverLabel.textContent = '🔥 โหมด FEVER สูงสุด!';
+                    uiRefs.feverLabel.className = 'text-rose-600 font-extrabold';
+                } else {
+                    uiRefs.feverLabel.textContent = '⚡ พลังคอมโบ FEVER';
+                    uiRefs.feverLabel.className = 'text-sky-900 font-bold';
+                }
+            }
+
+            const pendingCrystals = calculatePendingRebirthCrystals(gameState.runEggs);
+            const isRebirthReady = pendingCrystals >= 1;
+            if (lastUiState.rebirthReady !== isRebirthReady) {
+                lastUiState.rebirthReady = isRebirthReady;
+                if (isRebirthReady) {
+                    uiRefs.rebirthReadyDot.classList.remove('hidden');
+                } else {
+                    uiRefs.rebirthReadyDot.classList.add('hidden');
+                }
+            }
+        }
+
+        function updateShopDirty() {
+            if (gameState.activeTab !== 'upgrades') return;
+
+            for (let i = 0; i < UPGRADE_DEFINITIONS.length; i++) {
+                const def = UPGRADE_DEFINITIONS[i];
+                const lvl = gameState.upgrades[def.id] || 0;
+                const purchase = getPurchaseDetails(def, lvl);
+
+                const refs = uiRefs.upgradeCards[def.id];
+                const prev = lastUiState.cards[def.id];
+                if (!refs || !prev) continue;
+
+                const lvlStr = `Lv.${lvl}`;
+                if (prev.lvlStr !== lvlStr) {
+                    prev.lvlStr = lvlStr;
+                    refs.lvlEl.textContent = lvlStr;
+                }
+
+                const costStr = formatNumber(purchase.cost);
+                if (prev.costStr !== costStr) {
+                    prev.costStr = costStr;
+                    refs.costEl.textContent = costStr;
+                }
+
+                const tagStr = `ซื้อ x${purchase.count}`;
+                if (prev.tagStr !== tagStr) {
+                    prev.tagStr = tagStr;
+                    refs.tagEl.textContent = tagStr;
+                }
+
+                const perks = [];
+                if (def.epcAdd > 0) perks.push(`+${formatNumber(def.epcAdd * purchase.count)} พลังคลิก`);
+                if (def.epsAdd > 0) perks.push(`+${formatNumber(def.epsAdd * purchase.count)} ไข่/วิ`);
+                if (def.critChanceAdd > 0) perks.push(`+${(def.critChanceAdd * purchase.count).toFixed(1).replace(/\.0$/, '')}% คริ`);
+                if (def.feverBoostAdd > 0) perks.push(`+${(def.feverBoostAdd * purchase.count).toFixed(1)}x Fever`);
+                if (def.globalMultAdd > 0) perks.push(`+${Math.round(def.globalMultAdd * purchase.count * 100)}% โบนัสรวม`);
+                const perkStr = perks.join(' • ');
+
+                if (prev.perkStr !== perkStr) {
+                    prev.perkStr = perkStr;
+                    refs.perkEl.textContent = perkStr;
+                }
+
+                if (prev.canAfford !== purchase.canAfford) {
+                    prev.canAfford = purchase.canAfford;
+                    if (purchase.canAfford) {
+                        refs.card.classList.add('affordable');
+                        refs.card.classList.remove('locked');
+                        refs.btnEl.className = 'px-3 py-2 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-1.5 border bg-gradient-to-b from-amber-400 to-amber-500 border-amber-700 text-amber-950';
+                    } else {
+                        refs.card.classList.remove('affordable');
+                        refs.card.classList.add('locked');
+                        refs.btnEl.className = 'px-3 py-2 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-1.5 border bg-eggshell-200 border-eggshell-500/50 text-eggshell-700';
+                    }
+                }
+            }
+        }
+
+        function updateRebirthDirty() {
+            if (gameState.activeTab !== 'rebirth') return;
+
+            const rbCountStr = formatNumber(gameState.rebirthCount);
+            if (lastUiState.rbCount !== rbCountStr) {
+                lastUiState.rbCount = rbCountStr;
+                uiRefs.rbCount.textContent = rbCountStr;
+            }
+
+            const rbCrystalsStr = formatNumber(gameState.rebirthCrystals);
+            if (lastUiState.rbCrystals !== rbCrystalsStr) {
+                lastUiState.rbCrystals = rbCrystalsStr;
+                uiRefs.rbCrystals.textContent = rbCrystalsStr;
+            }
+
+            const crystalBonusStr = `+${formatNumber(gameState.rebirthCrystals * 15)}%`;
+            if (lastUiState.rbCrystalBonus !== crystalBonusStr) {
+                lastUiState.rbCrystalBonus = crystalBonusStr;
+                uiRefs.rbCrystalBonus.textContent = crystalBonusStr;
+            }
+
+            const totalMultStr = `x${cachedStats.ascensionMult.toFixed(2)}`;
+            if (lastUiState.rbTotalMult !== totalMultStr) {
+                lastUiState.rbTotalMult = totalMultStr;
+                uiRefs.rbTotalMult.textContent = totalMultStr;
+            }
+
+            const pending = calculatePendingRebirthCrystals(gameState.runEggs);
+            const pendingStr = formatNumber(pending);
+            if (lastUiState.rbPendingCrystals !== pendingStr) {
+                lastUiState.rbPendingCrystals = pendingStr;
+                uiRefs.rbPendingCrystals.textContent = pendingStr;
+
+                if (pending >= 1) {
+                    uiRefs.btnTriggerRebirth.className = 'mt-3 w-full py-2.5 px-4 rounded-xl font-display font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 transition-all cursor-pointer bg-gradient-to-r from-amber-400 via-amber-300 to-yellow-300 text-violet-950 border-2 border-amber-100 shadow-lg active:translate-y-0.5';
+                    uiRefs.btnRebirthText.textContent = `จุติตอนนี้! รับ +${pendingStr} 💎`;
+                } else {
+                    uiRefs.btnTriggerRebirth.className = 'mt-3 w-full py-2.5 px-4 rounded-xl font-display font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 transition-all cursor-not-allowed bg-violet-900/60 text-violet-300 border border-violet-500/40';
+                    uiRefs.btnRebirthText.textContent = 'ต้องสะสมไข่รอบนี้ครบ 1.00 M';
+                }
+            }
+
+            const nextCrystalTarget = pending + 1;
+            const prevReq = pending === 0 ? 0 : getEggsRequiredForCrystals(pending);
+            const nextReq = getEggsRequiredForCrystals(nextCrystalTarget);
+            const nextPct = Math.min(100, Math.max(0, Math.floor(((gameState.runEggs - prevReq) / Math.max(1, nextReq - prevReq)) * 100)));
+
+            if (lastUiState.rbNextPct !== nextPct) {
+                lastUiState.rbNextPct = nextPct;
+                uiRefs.rbNextBar.style.width = `${nextPct}%`;
+            }
+
+            const progLabel = `สะสมรอบนี้: ${formatNumber(gameState.runEggs)} (${nextPct}%)`;
+            if (lastUiState.rbProgressLabel !== progLabel) {
+                lastUiState.rbProgressLabel = progLabel;
+                uiRefs.rbProgressLabel.textContent = progLabel;
+            }
+
+            const reqLabel = `ผลึกที่ ${formatNumber(nextCrystalTarget)}: ${formatNumber(nextReq)}`;
+            if (lastUiState.rbNextCrystalReq !== reqLabel) {
+                lastUiState.rbNextCrystalReq = reqLabel;
+                uiRefs.rbNextCrystalReq.textContent = reqLabel;
+            }
+
+            for (let i = 0; i < REBIRTH_SKILL_DEFINITIONS.length; i++) {
+                const skill = REBIRTH_SKILL_DEFINITIONS[i];
+                const lvl = gameState.rebirthSkills[skill.id] || 0;
+                const isMaxed = lvl >= skill.maxLevel;
+                const cost = getRebirthSkillCost(skill, lvl);
+                const canAfford = !isMaxed && gameState.rebirthCrystals >= cost;
+
+                const refs = uiRefs.rebirthSkillCards[skill.id];
+                const prev = lastUiState.skillCards[skill.id];
+                if (!refs || !prev) continue;
+
+                const lvlStr = skill.maxLevel < 100 ? `Lv.${lvl}/${skill.maxLevel}` : `Lv.${lvl}`;
+                if (prev.lvlStr !== lvlStr) {
+                    prev.lvlStr = lvlStr;
+                    refs.lvlEl.textContent = lvlStr;
+                }
+
+                const effectStr = skill.effectText(lvl);
+                if (prev.effectStr !== effectStr) {
+                    prev.effectStr = effectStr;
+                    refs.effectEl.textContent = effectStr;
+                }
+
+                const costStr = isMaxed ? 'MAX' : formatNumber(cost);
+                if (prev.costStr !== costStr) {
+                    prev.costStr = costStr;
+                    refs.costEl.textContent = costStr;
+                }
+
+                const stateKey = isMaxed ? 'max' : (canAfford ? 'afford' : 'locked');
+                if (prev.stateKey !== stateKey) {
+                    prev.stateKey = stateKey;
+                    if (isMaxed) {
+                        refs.card.classList.remove('affordable', 'locked');
+                        refs.btnEl.className = 'px-3 py-2 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-1 border bg-emerald-100 border-emerald-500 text-emerald-900';
+                        refs.tagEl.textContent = 'เลเวลสูงสุดแล้ว';
+                    } else if (canAfford) {
+                        refs.card.classList.add('affordable');
+                        refs.card.classList.remove('locked');
+                        refs.btnEl.className = 'px-3 py-2 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-1 border bg-gradient-to-b from-violet-500 to-indigo-600 border-violet-800 text-white shadow-sm';
+                        refs.tagEl.textContent = 'อัปเกรดถาวร';
+                    } else {
+                        refs.card.classList.remove('affordable');
+                        refs.card.classList.add('locked');
+                        refs.btnEl.className = 'px-3 py-2 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-1 border bg-eggshell-200 border-eggshell-500/50 text-eggshell-700';
+                        refs.tagEl.textContent = 'ผลึกไม่พอ';
+                    }
+                }
+            }
+        }
+
+        function updateAllUI() {
+            updateHUDDirty();
+            updateShopDirty();
+            updateRebirthDirty();
+        }
+
+        /**
+         * ============================================================================
+         * 10. การโต้ตอบกับตัวละครไข่จริง (Instant Dual-Layer Swap & 2D Squash-Stretch)
+         * ============================================================================
+         */
+        const eggStageBtn = document.getElementById('egg-stage-btn');
+        const eggSpriteIdle = document.getElementById('egg-sprite-idle');
+        const eggSpritePressed = document.getElementById('egg-sprite-pressed');
+        const eggAura = document.getElementById('egg-aura');
+        const eggSunburst = document.getElementById('egg-sunburst');
+        const milestoneBurstRing = document.getElementById('milestone-burst-ring');
+
+        let cachedEggCenter = { x: viewW * 0.3, y: viewH * 0.52 };
+        function refreshEggCenterCache() {
+            const rect = eggStageBtn.getBoundingClientRect();
+            if (rect.width > 0 && rect.height > 0) {
+                cachedEggCenter.x = rect.left + rect.width * 0.5;
+                cachedEggCenter.y = rect.top + rect.height * 0.5;
+            }
+        }
+
+        function setEggPressedVisual(showPressed) {
+            if (eggPhysics.isShowingPressed === showPressed) return;
+            eggPhysics.isShowingPressed = showPressed;
+            if (showPressed) {
+                eggSpritePressed.style.opacity = '1';
+                eggSpriteIdle.style.opacity = '0';
+            } else {
+                eggSpritePressed.style.opacity = '0';
+                eggSpriteIdle.style.opacity = '1';
+            }
+        }
+
+        function handleEggClick(clientX, clientY) {
+            eggPhysics.comboCount += 1;
+            eggPhysics.feverEnergy = Math.min(100, eggPhysics.feverEnergy + cachedStats.feverChargeRate);
+            eggPhysics.comboDecayTimer = 0.95;
+            const feverMult = getFeverMultiplier();
+
+            const isCrit = Math.random() * 100 < cachedStats.critChance;
+            let rawGain = cachedStats.epc * feverMult;
+            if (isCrit) {
+                rawGain *= cachedStats.critMult;
+            }
+            const gain = Math.max(1, Math.round(rawGain));
+
+            gameState.eggs += gain;
+            gameState.runEggs += gain;
+            gameState.totalEggsEarned += gain;
+            gameState.totalClicks += 1;
+
+            const feverExpansion = (eggPhysics.feverEnergy / 100) * 0.26;
+            eggPhysics.targetScale = 1.0 + feverExpansion;
+            eggPhysics.velX += isCrit ? 4.8 : 3.2;
+            eggPhysics.velY -= isCrit ? 3.8 : 2.5;
+            eggPhysics.rotVel += (Math.random() - 0.5) * (isCrit ? 16 : 10);
+
+            // สลับเป็นรูปสถานะตอนกดทันที 0ms และคงไว้ 140ms หลังปล่อยนิ้ว
+            eggPhysics.pressedUntil = performance.now() + 140;
+            setEggPressedVisual(true);
+
+            soundEngine.playPop(eggPhysics.feverEnergy / 100, isCrit);
+
+            const fxX = clientX || cachedEggCenter.x;
+            const fxY = clientY || cachedEggCenter.y;
+            spawnClickEffects(fxX, fxY, gain, isCrit, false);
+
+            updateHUDDirty();
+            updateShopDirty();
+            updateRebirthDirty();
+        }
+
+        function triggerEvolutionRankUp(rankInfo) {
+            eggPhysics.scaleX = 1.32;
+            eggPhysics.scaleY = 1.32;
+            eggPhysics.velX = 1.6;
+            eggPhysics.velY = 1.6;
+            soundEngine.playCelebration();
+            spawnClickEffects(cachedEggCenter.x, cachedEggCenter.y, rankInfo.target, true, true);
+
+            milestoneBurstRing.classList.remove('milestone-flash-anim');
+            void milestoneBurstRing.offsetWidth;
+            milestoneBurstRing.classList.add('milestone-flash-anim');
+
+            showToast(`🌟 วิวัฒนาการสำเร็จ! เลื่อนขั้นสู่ "${rankInfo.name}"`);
+        }
+
+        eggStageBtn.addEventListener('pointerdown', (e) => {
+            if (e.button !== undefined && e.button !== 0) return;
+            e.preventDefault();
+            eggPhysics.isPointerDown = true;
+            handleEggClick(e.clientX, e.clientY);
+        });
+
+        const releasePointerState = () => {
+            if (!eggPhysics.isPointerDown) return;
+            eggPhysics.isPointerDown = false;
+            eggPhysics.pressedUntil = performance.now() + 140;
+        };
+
+        window.addEventListener('pointerup', releasePointerState);
+        window.addEventListener('pointercancel', releasePointerState);
+        eggStageBtn.addEventListener('pointerleave', () => {
+            if (eggPhysics.isPointerDown) releasePointerState();
+        });
+
+        // ปุ่ม Spacebar: หากมินิเกมกำลังวิ่งให้หยุดเข็มก่อน มิฉะนั้นให้คลิกไข่
+        window.addEventListener('keydown', (e) => {
+            if (e.code === 'Space' && !e.repeat) {
+                const tag = document.activeElement ? document.activeElement.tagName : '';
+                if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+
+                if (minigameState.phase === 'active') {
+                    e.preventDefault();
+                    resolveMinigameStop();
+                } else if (document.activeElement === eggStageBtn) {
+                    e.preventDefault();
+                    eggPhysics.isPointerDown = true;
+                    handleEggClick(cachedEggCenter.x, cachedEggCenter.y);
+                }
+            }
+        });
+
+        eggStageBtn.addEventListener('keydown', (e) => {
+            if (e.code === 'Enter' && !e.repeat) {
+                e.preventDefault();
+                eggPhysics.isPointerDown = true;
+                handleEggClick(cachedEggCenter.x, cachedEggCenter.y);
+            }
+        });
+
+        eggStageBtn.addEventListener('keyup', (e) => {
+            if (e.code === 'Space' || e.code === 'Enter') releasePointerState();
+        });
+
+        /**
+         * ============================================================================
+         * 11. อีเวนต์ไข่ทองคำโบนัสลอยผ่านท้องฟ้า (GPU translate3d Animation)
+         * ============================================================================
+         */
+        const goldenBonusLayer = document.getElementById('golden-bonus-layer');
+
+        function spawnGoldenBonusEvent() {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'golden-bonus-btn cursor-pointer select-none focus:outline-none flex flex-col items-center';
+            btn.setAttribute('aria-label', 'เก็บไข่ทองคำโบนัส');
+
+            const startFromLeft = Math.random() > 0.5;
+            const baseY = (0.16 + Math.random() * 0.50) * viewH;
+
+            btn.innerHTML = `
+                <div class="relative w-16 h-20 sm:w-20 sm:h-24 flex items-center justify-center">
+                    <div class="golden-egg-glow absolute inset-0 rounded-full scale-125 pointer-events-none"></div>
+                    <img src="${CUSTOM_EGG_URLS.idle}"
+                         alt="ไข่ทองคำโบนัส"
+                         draggable="false"
+                         class="relative w-full h-full object-contain pointer-events-none"
+                         style="filter: sepia(1) saturate(4.5) brightness(1.18);" />
+                </div>
+                <span class="mt-0.5 bg-amber-900/95 text-amber-100 text-[11px] font-bold px-2.5 py-0.5 rounded-full border border-amber-300 shadow">
+                    ✨ ไข่ทองคำโบนัส!
+                </span>
+            `;
+
+            goldenBonusLayer.appendChild(btn);
+
+            const duration = 9500;
+            const startTime = performance.now();
+            let collected = false;
+
+            btn.addEventListener('pointerdown', (e) => {
+                e.stopPropagation();
+                if (collected) return;
+                collected = true;
+
+                const baseBonus = Math.max(75, Math.round(cachedStats.eps * 32 + cachedStats.epc * 55));
+                const bonus = Math.round(baseBonus * cachedStats.goldenRewardMult);
+                gameState.eggs += bonus;
+                gameState.runEggs += bonus;
+                gameState.totalEggsEarned += bonus;
+
+                soundEngine.playCelebration();
+                spawnClickEffects(e.clientX, e.clientY, bonus, true, true);
+                showToast(`✨ เก็บไข่ทองคำโบนัสสำเร็จ! รับทันที +${formatNumber(bonus)}`);
+                updateAllUI();
+                if (btn.parentNode) btn.parentNode.removeChild(btn);
+            });
+
+            function animateGoldenDrift(now) {
+                if (collected || !btn.parentNode) return;
+                const progress = (now - startTime) / duration;
+                if (progress >= 1) {
+                    btn.parentNode.removeChild(btn);
+                    return;
+                }
+                const travelWidth = viewW + 180;
+                const x = startFromLeft
+                    ? (-90 + progress * travelWidth)
+                    : (viewW + 90 - progress * travelWidth);
+                const bobY = baseY + Math.sin(progress * Math.PI * 8) * 14;
+                const rot = Math.sin(progress * Math.PI * 8) * 8;
+
+                btn.style.transform = `translate3d(${x.toFixed(1)}px, ${bobY.toFixed(1)}px, 0) rotate(${rot.toFixed(1)}deg)`;
+                requestAnimationFrame(animateGoldenDrift);
+            }
+
+            requestAnimationFrame(animateGoldenDrift);
+        }
+
+        /**
+         * ============================================================================
+         * 12. ระบบซื้ออัปเกรด ระบบจุติ (Rebirth) การบันทึกข้อมูลอัตโนมัติ และปุ่มควบคุมต่างๆ
+         * ============================================================================
+         */
         function buyUpgrade(upgradeId) {
             const def = UPGRADE_DEFINITIONS.find(u => u.id === upgradeId);
             if (!def) return;
@@ -1371,98 +2661,86 @@
             const purchase = getPurchaseDetails(def, currentLvl);
 
             if (!purchase.canAfford || gameState.eggs < purchase.cost) {
-                showToast('จำนวนไข่สะสมยังไม่พอสำหรับอัพเกรดนี้!');
+                showToast('จำนวนไข่คงเหลือยังไม่พอสำหรับอัปเกรดนี้!');
                 return;
             }
 
             gameState.eggs -= purchase.cost;
             gameState.upgrades[upgradeId] = currentLvl + purchase.count;
 
+            recalculateStats();
             soundEngine.playUpgrade();
-            updateUI();
+            updateAllUI();
             saveGame(false);
         }
 
-        function updateUI() {
-            const stats = getPlayerStats();
-            const tierInfo = getCurrentTierInfo();
-            const feverMult = getFeverMultiplier();
+        function buyRebirthSkill(skillId) {
+            const skill = REBIRTH_SKILL_DEFINITIONS.find(s => s.id === skillId);
+            if (!skill) return;
 
-            // อัปเดตตัวเลขสถิติหลัก
-            document.getElementById('ui-eggs').textContent = formatNumber(gameState.eggs);
-            document.getElementById('ui-eps').textContent = formatNumber(stats.eps);
-            document.getElementById('ui-epc').textContent = formatNumber(stats.epc);
-            document.getElementById('ui-crit').textContent = stats.critChance.toFixed(1).replace(/\.0$/, '');
-            document.getElementById('ui-crit-mult').textContent = stats.critMult.toFixed(1).replace(/\.0$/, '');
-            document.getElementById('ui-total-clicks').textContent = formatNumber(gameState.totalClicks);
-
-            // อัปเดตระดับขั้นและหลอดความคืบหน้า
-            document.getElementById('ui-tier-badge').textContent = `ระดับ ${tierInfo.tier}`;
-            document.getElementById('ui-tier-name').textContent = tierInfo.name;
-            document.getElementById('ui-tier-bonus').textContent = `+${formatNumber(tierInfo.bonus)}`;
-
-            const tierPct = Math.min(100, Math.floor((gameState.tierProgress / tierInfo.maxTarget) * 100));
-            document.getElementById('ui-tier-pct').textContent = tierPct;
-            document.getElementById('ui-tier-bar').style.width = `${tierPct}%`;
-
-            // อัปเดตหลอดคอมโบและโหมด FEVER
-            const feverBar = document.getElementById('ui-fever-bar');
-            const comboMultEl = document.getElementById('ui-combo-mult');
-            const feverLabelEl = document.getElementById('ui-fever-label');
-
-            feverBar.style.width = `${Math.round(eggPhysics.feverEnergy)}%`;
-            comboMultEl.textContent = `x${feverMult.toFixed(1)} (${eggPhysics.comboCount} คอมโบ)`;
-            if (eggPhysics.feverEnergy >= 80) {
-                feverLabelEl.textContent = '🔥 โหมด FEVER สูงสุด!';
-                feverLabelEl.className = 'text-rose-600 font-extrabold';
-            } else {
-                feverLabelEl.textContent = '⚡ พลังคอมโบ FEVER';
-                feverLabelEl.className = 'text-sky-900 font-bold';
+            const currentLvl = gameState.rebirthSkills[skillId] || 0;
+            if (currentLvl >= skill.maxLevel) {
+                showToast('สกิลนี้ถึงเลเวลสูงสุดแล้ว!');
+                return;
             }
 
-            // อัปเดตการ์ดอัพเกรดแต่ละรายการ
-            UPGRADE_DEFINITIONS.forEach(def => {
-                const lvl = gameState.upgrades[def.id] || 0;
-                const purchase = getPurchaseDetails(def, lvl);
+            const cost = getRebirthSkillCost(skill, currentLvl);
+            if (gameState.rebirthCrystals < cost) {
+                showToast('ผลึกจุติ (💎) ยังไม่เพียงพอ!');
+                return;
+            }
 
-                const card = document.getElementById(`upg-card-${def.id}`);
-                const lvlEl = document.getElementById(`upg-lvl-${def.id}`);
-                const costEl = document.getElementById(`upg-cost-${def.id}`);
-                const btnEl = document.getElementById(`upg-btn-${def.id}`);
-                const tagEl = document.getElementById(`upg-buy-tag-${def.id}`);
-                const perkEl = document.getElementById(`upg-perk-${def.id}`);
+            gameState.rebirthCrystals -= cost;
+            gameState.rebirthSkills[skillId] = currentLvl + 1;
 
-                if (!card) return;
-
-                lvlEl.textContent = `Lv.${lvl}`;
-                costEl.textContent = formatNumber(purchase.cost);
-                tagEl.textContent = `ซื้อ x${purchase.count}`;
-
-                const perks = [];
-                if (def.epcAdd > 0) perks.push(`+${formatNumber(def.epcAdd * purchase.count)} พลังคลิก`);
-                if (def.epsAdd > 0) perks.push(`+${formatNumber(def.epsAdd * purchase.count)} ไข่/วิ`);
-                if (def.critChanceAdd > 0) perks.push(`+${(def.critChanceAdd * purchase.count).toFixed(1).replace(/\.0$/, '')}% คริ`);
-                if (def.globalMultAdd > 0) perks.push(`+${Math.round(def.globalMultAdd * purchase.count * 100)}% โบนัสรวม`);
-                perkEl.textContent = perks.join(' • ');
-
-                if (purchase.canAfford) {
-                    card.classList.add('affordable');
-                    card.classList.remove('locked');
-                    btnEl.className = 'px-3 py-2 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-1.5 shadow-2xs border bg-gradient-to-b from-amber-400 to-amber-500 border-amber-700 text-amber-950';
-                } else {
-                    card.classList.remove('affordable');
-                    card.classList.add('locked');
-                    btnEl.className = 'px-3 py-2 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-1.5 shadow-2xs border bg-eggshell-300/80 border-eggshell-500/50 text-eggshell-700';
-                }
-            });
+            recalculateStats();
+            restartGoldenEggSpawner();
+            soundEngine.playUpgrade();
+            updateAllUI();
+            saveGame(false);
+            showToast(`💎 อัปเกรด "${skill.name}" เป็น Lv.${currentLvl + 1} สำเร็จ!`);
         }
 
-        /**
-         * ============================================================================
-         * 10. ระบบบันทึกข้อมูลอัตโนมัติ (LocalStorage) และปุ่มควบคุมต่างๆ
-         * ============================================================================
-         */
-        function saveGame(showStatus = true) {
+        function performRebirth() {
+            const pendingCrystals = calculatePendingRebirthCrystals(gameState.runEggs);
+            if (pendingCrystals < 1) {
+                showToast('ต้องสะสมไข่ในรอบนี้ให้ครบ 1.00 M ก่อนจึงจะจุติได้!');
+                return;
+            }
+
+            const legacyLvl = gameState.rebirthSkills.starting_legacy || 0;
+            const startingEggs = getStartingLegacyEggs(legacyLvl);
+
+            gameState.rebirthCrystals += pendingCrystals;
+            gameState.rebirthCount += 1;
+            gameState.eggs = startingEggs;
+            gameState.runEggs = startingEggs;
+            gameState.totalEggsEarned += startingEggs;
+            gameState.upgrades = {};
+
+            eggPhysics.comboCount = 0;
+            eggPhysics.feverEnergy = 0;
+            eggPhysics.targetScale = 1.0;
+            eggPhysics.scaleX = 1.38;
+            eggPhysics.scaleY = 1.38;
+
+            recalculateStats();
+            soundEngine.playCelebration();
+            spawnClickEffects(cachedEggCenter.x, cachedEggCenter.y, pendingCrystals, true, true);
+
+            milestoneBurstRing.classList.remove('milestone-flash-anim');
+            void milestoneBurstRing.offsetWidth;
+            milestoneBurstRing.classList.add('milestone-flash-anim');
+
+            lastUiState.rbPendingCrystals = '';
+            updateAllUI();
+            saveGame(true);
+
+            const legacyMsg = startingEggs > 0 ? ` (เริ่มรอบใหม่พร้อม ${formatNumber(startingEggs)} ไข่)` : '';
+            showToast(`🔮 จุติครั้งที่ ${gameState.rebirthCount} สำเร็จ! รับ +${formatNumber(pendingCrystals)} 💎${legacyMsg}`);
+        }
+
+        function saveGame(showStatus) {
             try {
                 localStorage.setItem(SAVE_KEY, JSON.stringify(gameState));
                 if (showStatus) {
@@ -1474,31 +2752,33 @@
                         }, 1800);
                     }
                 }
-            } catch (e) {
-                // ข้ามกรณีเบราว์เซอร์ปิดกั้น localStorage
-            }
+            } catch (e) {}
         }
 
         function loadGame() {
             try {
-                const raw = localStorage.getItem(SAVE_KEY);
+                const raw = localStorage.getItem(SAVE_KEY) || localStorage.getItem(LEGACY_SAVE_KEY);
                 if (raw) {
                     const parsed = JSON.parse(raw);
                     gameState = {
                         ...gameState,
                         ...parsed,
-                        upgrades: parsed.upgrades || {}
+                        runEggs: parsed.runEggs !== undefined ? parsed.runEggs : (parsed.totalEggsEarned || parsed.eggs || 0),
+                        rebirthCount: parsed.rebirthCount || 0,
+                        rebirthCrystals: parsed.rebirthCrystals || 0,
+                        rebirthSkills: parsed.rebirthSkills || {},
+                        upgrades: parsed.upgrades || {},
+                        activeTab: parsed.activeTab === 'rebirth' ? 'rebirth' : 'upgrades'
                     };
                 }
-            } catch (e) {
-                // ใช้ค่าเริ่มต้นหากอ่านข้อมูลไม่สำเร็จ
-            }
+            } catch (e) {}
+            recalculateStats();
         }
 
         function showToast(message) {
             const box = document.getElementById('toast-box');
             const toast = document.createElement('div');
-            toast.className = 'bg-white/90 backdrop-blur-md border-2 border-amber-300 text-amber-950 font-semibold text-xs sm:text-sm px-4 py-2.5 rounded-2xl shadow-lg transition-all duration-300 transform translate-y-2 opacity-0';
+            toast.className = 'bg-white/95 border-2 border-amber-300 text-amber-950 font-semibold text-xs sm:text-sm px-4 py-2.5 rounded-2xl shadow-lg transition-all duration-250 transform translate-y-2 opacity-0';
             toast.textContent = message;
             box.appendChild(toast);
 
@@ -1510,8 +2790,8 @@
                 toast.classList.add('opacity-0', 'translate-y-2');
                 setTimeout(() => {
                     if (toast.parentNode) toast.parentNode.removeChild(toast);
-                }, 300);
-            }, 2600);
+                }, 260);
+            }, 2400);
         }
 
         // ปุ่มเลือกจำนวนการซื้อ x1 / x10 / MAX
@@ -1532,11 +2812,72 @@
                     btn.classList.add('text-eggshell-800');
                 }
             });
-            updateUI();
+            updateShopDirty();
         }
 
         Object.entries(modeButtons).forEach(([mode, btn]) => {
             btn.addEventListener('click', () => setBuyMode(mode));
+        });
+
+        // ระบบสลับแท็บ อัปเกรด vs จุติ (Rebirth)
+        const tabBtnUpgrades = document.getElementById('tab-btn-upgrades');
+        const tabBtnRebirth = document.getElementById('tab-btn-rebirth');
+        const tabContentUpgrades = document.getElementById('tab-content-upgrades');
+        const tabContentRebirth = document.getElementById('tab-content-rebirth');
+
+        function switchPanelTab(tabName) {
+            gameState.activeTab = tabName;
+            if (tabName === 'rebirth') {
+                tabBtnUpgrades.classList.remove('active-tab');
+                tabBtnRebirth.classList.add('rebirth-tab-active');
+                tabContentUpgrades.classList.add('hidden');
+                tabContentUpgrades.classList.remove('flex');
+                tabContentRebirth.classList.remove('hidden');
+                tabContentRebirth.classList.add('flex');
+                updateRebirthDirty();
+            } else {
+                tabBtnRebirth.classList.remove('rebirth-tab-active');
+                tabBtnUpgrades.classList.add('active-tab');
+                tabContentRebirth.classList.add('hidden');
+                tabContentRebirth.classList.remove('flex');
+                tabContentUpgrades.classList.remove('hidden');
+                tabContentUpgrades.classList.add('flex');
+                updateShopDirty();
+            }
+        }
+
+        tabBtnUpgrades.addEventListener('click', () => switchPanelTab('upgrades'));
+        tabBtnRebirth.addEventListener('click', () => switchPanelTab('rebirth'));
+        document.getElementById('btn-header-rebirth').addEventListener('click', () => switchPanelTab('rebirth'));
+
+        // หน้าต่างยืนยันการจุติ (Rebirth Modal)
+        const rebirthModal = document.getElementById('rebirth-modal');
+        document.getElementById('btn-trigger-rebirth').addEventListener('click', () => {
+            const pending = calculatePendingRebirthCrystals(gameState.runEggs);
+            if (pending < 1) {
+                showToast('ต้องสะสมไข่รอบนี้ให้ครบ 1.00 M เพื่อปลดล็อกการจุติ!');
+                return;
+            }
+            const nextCrystals = gameState.rebirthCrystals + pending;
+            const nextRbCount = gameState.rebirthCount + 1;
+            const ancientLvl = gameState.rebirthSkills.ancient_bloodline || 0;
+            const projectedMult = (1 + nextCrystals * 0.15) * Math.pow(1.10, nextRbCount) * (1 + ancientLvl * 0.25);
+
+            document.getElementById('modal-rb-gain').textContent = formatNumber(pending);
+            document.getElementById('modal-rb-new-mult').textContent = `x${projectedMult.toFixed(2)}`;
+            rebirthModal.classList.remove('hidden');
+            rebirthModal.classList.add('flex');
+        });
+
+        document.getElementById('btn-rebirth-cancel').addEventListener('click', () => {
+            rebirthModal.classList.add('hidden');
+            rebirthModal.classList.remove('flex');
+        });
+
+        document.getElementById('btn-rebirth-confirm').addEventListener('click', () => {
+            rebirthModal.classList.add('hidden');
+            rebirthModal.classList.remove('flex');
+            performRebirth();
         });
 
         // ปุ่มเปิด/ปิดเสียง
@@ -1547,7 +2888,7 @@
             if (isOn) soundEngine.playUpgrade();
         });
 
-        // หน้าต่างยืนยันการเริ่มเกมใหม่
+        // หน้าต่างยืนยันการเริ่มเกมใหม่ทั้งหมด
         const resetModal = document.getElementById('reset-modal');
         document.getElementById('btn-reset-open').addEventListener('click', () => {
             resetModal.classList.remove('hidden');
@@ -1558,16 +2899,26 @@
             resetModal.classList.remove('flex');
         });
         document.getElementById('btn-reset-confirm').addEventListener('click', () => {
-            localStorage.removeItem(SAVE_KEY);
+            try {
+                localStorage.removeItem(SAVE_KEY);
+                localStorage.removeItem(LEGACY_SAVE_KEY);
+            } catch (e) {}
             gameState = {
                 eggs: 0,
+                runEggs: 0,
                 totalEggsEarned: 0,
                 totalClicks: 0,
-                tierLevel: 1,
-                tierProgress: 0,
+                highestRankIdx: 0,
+                rebirthCount: 0,
+                rebirthCrystals: 0,
+                rebirthSkills: {},
                 upgrades: {},
-                buyMode: '1'
+                buyMode: '1',
+                activeTab: 'upgrades'
             };
+            recalculateStats();
+            restartGoldenEggSpawner();
+            closeMinigameRound();
             eggPhysics.comboCount = 0;
             eggPhysics.feverEnergy = 0;
             eggPhysics.targetScale = 1;
@@ -1575,67 +2926,120 @@
             eggPhysics.pressedUntil = 0;
             setEggPressedVisual(false);
             setBuyMode('1');
-            updateUI();
+            switchPanelTab('upgrades');
+            updateAllUI();
             resetModal.classList.add('hidden');
             resetModal.classList.remove('flex');
-            showToast('🔄 รีเซ็ตข้อมูลเรียบร้อย เริ่มต้นใหม่ได้เลย!');
+            showToast('🔄 ล้างข้อมูลทั้งหมดเรียบร้อย เริ่มต้นใหม่ได้เลย!');
         });
 
         /**
          * ============================================================================
-         * 11. ลูปหลักของเกม 60FPS (Main Game Loop: Physics, Passive EPS, Canvases)
+         * 13. ลูปหลักของเกม 60-120FPS (Zero-Allocation High-Frequency Game Loop)
          * ============================================================================
          */
         let lastTimestamp = performance.now();
-        let epsUiTimer = 0;
+        let uiSyncAccumulator = 0;
+        let lastAuraOpacity = '';
+        let lastAuraTransform = '';
+        let lastSunburstOpacity = '';
+        let lastHudCountdownSec = -1;
+        let lastMgTimeText = '';
+        let goldenEggTimerId = null;
+
+        function restartGoldenEggSpawner() {
+            if (goldenEggTimerId) {
+                clearInterval(goldenEggTimerId);
+            }
+            goldenEggTimerId = setInterval(() => spawnGoldenBonusEvent(), cachedStats.goldenSpawnIntervalMs);
+        }
 
         function mainLoop(now) {
-            const dt = Math.min(0.1, (now - lastTimestamp) / 1000);
+            const dt = Math.min(0.08, (now - lastTimestamp) / 1000);
             lastTimestamp = now;
 
-            // 1. วาดรูปไข่จางๆ ที่ตกลงมาบนพื้นหลัง และเอฟเฟกต์ประกายแสงด้านหน้า
-            updateAndDrawBackgroundEggs();
-            updateAndDrawFx();
+            // 1. วาดไข่พื้นหลังย่อส่วน 72x90px และเอฟเฟกต์จาก Object Pool
+            updateAndDrawBackgroundEggs(dt);
+            updateAndDrawFx(dt);
 
-            // 2. คำนวณการผลิตไข่อัตโนมัติรายวินาที (EPS)
-            const stats = getPlayerStats();
-            if (stats.eps > 0) {
-                const earned = stats.eps * dt;
-                gameState.eggs += earned;
-                gameState.totalEggsEarned += earned;
-                gameState.tierProgress += earned * 0.5;
+            // 2. อัปเดตวงจรเวลามินิเกม 40 วินาที และการเคลื่อนที่ของเข็มด้วย GPU translate3d
+            if (minigameState.phase === 'cooldown') {
+                minigameState.cooldownRemaining -= dt;
+                const secInt = Math.max(0, Math.ceil(minigameState.cooldownRemaining));
+                if (secInt !== lastHudCountdownSec) {
+                    lastHudCountdownSec = secInt;
+                    hudMinigameTimerEl.textContent = `มินิเกมใน: ${secInt}s`;
+                }
+                if (minigameState.cooldownRemaining <= 0) {
+                    lastHudCountdownSec = -1;
+                    startMinigameRound();
+                }
+            } else if (minigameState.phase === 'active') {
+                minigameState.activeRemaining -= dt;
+                minigameState.needlePos += minigameState.needleDir * MINIGAME_NEEDLE_SPEED * dt;
 
-                const tierInfo = getCurrentTierInfo();
-                if (gameState.tierProgress >= tierInfo.maxTarget) {
-                    const rect = eggStageBtn.getBoundingClientRect();
-                    triggerMilestoneAdvance(tierInfo, rect.left + rect.width / 2, rect.top + rect.height / 2);
+                if (minigameState.needlePos >= 100) {
+                    minigameState.needlePos = 200 - minigameState.needlePos;
+                    minigameState.needleDir = -1;
+                } else if (minigameState.needlePos <= 0) {
+                    minigameState.needlePos = -minigameState.needlePos;
+                    minigameState.needleDir = 1;
                 }
 
-                epsUiTimer += dt;
-                if (epsUiTimer >= 0.1) {
-                    epsUiTimer = 0;
-                    updateUI();
+                const needlePx = (minigameState.needlePos / 100) * minigameState.trackTravelPx;
+                minigameNeedleEl.style.transform = `translate3d(${needlePx.toFixed(1)}px, 0, 0)`;
+
+                const timeText = `${Math.max(0, minigameState.activeRemaining).toFixed(1)}s`;
+                if (timeText !== lastMgTimeText) {
+                    lastMgTimeText = timeText;
+                    mgTimeLeftEl.textContent = timeText;
+                }
+
+                // หากครบ 12 วินาทีแล้วยังไม่กดหยุด ให้หยุดอัตโนมัติ ณ ตำแหน่งเข็มปัจจุบันเพื่อไม่ให้เสียรางวัล
+                if (minigameState.activeRemaining <= 0) {
+                    resolveMinigameStop();
+                }
+            } else if (minigameState.phase === 'result') {
+                minigameState.resultRemaining -= dt;
+                if (minigameState.resultRemaining <= 0) {
+                    closeMinigameRound();
                 }
             }
 
-            // 3. การลดระดับคอมโบและเกจ Fever เมื่อหยุดคลิก
+            // 3. คำนวณการผลิตไข่อัตโนมัติรายวินาที (EPS)
+            let stateChanged = false;
+            if (cachedStats.eps > 0) {
+                const earned = cachedStats.eps * dt;
+                gameState.eggs += earned;
+                gameState.runEggs += earned;
+                gameState.totalEggsEarned += earned;
+                stateChanged = true;
+            }
+
+            // 4. การลดระดับคอมโบและเกจ Fever เมื่อหยุดคลิก
             if (eggPhysics.comboDecayTimer > 0) {
                 eggPhysics.comboDecayTimer -= dt;
             } else if (eggPhysics.feverEnergy > 0 || eggPhysics.comboCount > 0) {
-                eggPhysics.feverEnergy = Math.max(0, eggPhysics.feverEnergy - 38 * dt);
-                eggPhysics.targetScale = 1.0 + (eggPhysics.feverEnergy / 100) * 0.30;
+                eggPhysics.feverEnergy = Math.max(0, eggPhysics.feverEnergy - cachedStats.feverDecayRate * dt);
+                eggPhysics.targetScale = 1.0 + (eggPhysics.feverEnergy / 100) * 0.26;
                 if (eggPhysics.feverEnergy <= 0) {
                     eggPhysics.comboCount = 0;
                 }
-                updateUI();
+                stateChanged = true;
             }
 
-            // 4. สลับรูปไข่ระหว่างสถานะกด (IMG_0818.png) และปกติ (Untitled2_20261122202055.png)
+            uiSyncAccumulator += dt;
+            if (stateChanged && uiSyncAccumulator >= 0.1) {
+                uiSyncAccumulator = 0;
+                updateAllUI();
+            }
+
+            // 5. สลับรูปไข่ระหว่างสถานะกด (IMG_0818.png) และปกติ (Untitled2_20261122202055.png)
             const keepPressed = eggPhysics.isPointerDown || (now < eggPhysics.pressedUntil);
             setEggPressedVisual(keepPressed);
 
-            // 5. จำลอง 2D Spring Physics (Squash-and-Stretch scaleX / scaleY + Rotation)
-            const stiffness = 210;
+            // 6. จำลอง 2D Spring Physics (Squash-and-Stretch scaleX / scaleY + Rotation)
+            const stiffness = 220;
             const damping = 13.5;
 
             const forceX = (eggPhysics.targetScale - eggPhysics.scaleX) * stiffness;
@@ -1646,49 +3050,71 @@
             eggPhysics.velY = (eggPhysics.velY + forceY * dt) * Math.exp(-damping * dt);
             eggPhysics.scaleY += eggPhysics.velY * dt;
 
-            const rotForce = (0 - eggPhysics.rotation) * 170;
+            const rotForce = (0 - eggPhysics.rotation) * 175;
             eggPhysics.rotVel = (eggPhysics.rotVel + rotForce * dt) * Math.exp(-12 * dt);
             eggPhysics.rotation += eggPhysics.rotVel * dt;
 
-            // การสั่นระริกเล็กๆ เมื่อเข้าใกล้โหมด Fever สูงสุด
             let jitterX = 0;
             let jitterY = 0;
             if (eggPhysics.feverEnergy >= 55) {
-                const intensity = ((eggPhysics.feverEnergy - 55) / 45) * 3.2;
+                const intensity = ((eggPhysics.feverEnergy - 55) / 45) * 3.0;
                 jitterX = (Math.random() - 0.5) * intensity;
                 jitterY = (Math.random() - 0.5) * intensity;
             }
 
-            eggStageBtn.style.transform = `translate(${jitterX.toFixed(2)}px, ${jitterY.toFixed(2)}px) scale(${eggPhysics.scaleX.toFixed(4)}, ${eggPhysics.scaleY.toFixed(4)}) rotate(${eggPhysics.rotation.toFixed(2)}deg)`;
+            eggStageBtn.style.transform = `translate3d(${jitterX.toFixed(2)}px, ${jitterY.toFixed(2)}px, 0) scale3d(${eggPhysics.scaleX.toFixed(4)}, ${eggPhysics.scaleY.toFixed(4)}, 1) rotate(${eggPhysics.rotation.toFixed(2)}deg)`;
 
-            // ปรับความสว่างออร่าและรัศมีแสงตามเกจ Fever
             const feverRatio = eggPhysics.feverEnergy / 100;
             const avgScale = (eggPhysics.scaleX + eggPhysics.scaleY) * 0.5;
-            eggAura.style.opacity = (0.35 + feverRatio * 0.58).toFixed(2);
-            eggAura.style.transform = `scale(${(0.9 + (avgScale - 1) * 1.45 + feverRatio * 0.28).toFixed(3)})`;
-            eggSunburst.style.opacity = (feverRatio * 0.88).toFixed(2);
+            const auraOpacity = (0.35 + feverRatio * 0.55).toFixed(2);
+            const auraScale = (0.9 + (avgScale - 1) * 1.4 + feverRatio * 0.25).toFixed(2);
+            const auraTransform = `scale3d(${auraScale}, ${auraScale}, 1)`;
+            const sunburstOpacity = (feverRatio * 0.85).toFixed(2);
+
+            if (lastAuraOpacity !== auraOpacity) {
+                lastAuraOpacity = auraOpacity;
+                eggAura.style.opacity = auraOpacity;
+            }
+            if (lastAuraTransform !== auraTransform) {
+                lastAuraTransform = auraTransform;
+                eggAura.style.transform = auraTransform;
+            }
+            if (lastSunburstOpacity !== sunburstOpacity) {
+                lastSunburstOpacity = sunburstOpacity;
+                eggSunburst.style.opacity = sunburstOpacity;
+            }
 
             requestAnimationFrame(mainLoop);
         }
 
-        // เริ่มต้นการทำงานทั้งหมดเมื่อโหลดหน้าเว็บเสร็จสมบูรณ์
-        window.addEventListener('resize', resizeCanvases);
+        // เริ่มต้นเกมทั้งหมดเมื่อโหลดหน้าเว็บเสร็จสมบูรณ์
+        window.addEventListener('resize', () => {
+            resizeCanvases();
+            refreshEggCenterCache();
+            refreshMinigameTrackMetrics();
+        });
 
-        window.onload = function () {
+        window.onload = async function () {
+            initProceduralEggshellTexture();
             resizeCanvases();
             initFallingEggs();
             loadGame();
+            renderUpgradeCardsOnce();
+            renderRebirthSkillCardsOnce();
             setBuyMode(gameState.buyMode || '1');
-            renderUpgradeCards();
-            updateUI();
+            switchPanelTab(gameState.activeTab || 'upgrades');
+            updateAllUI();
+            refreshEggCenterCache();
+            refreshMinigameTrackMetrics();
 
-            // บันทึกอัตโนมัติทุกๆ 6 วินาที
+            await preloadAndDecodeSprites();
+            refreshEggCenterCache();
+
             setInterval(() => saveGame(true), 6000);
+            setTimeout(() => spawnGoldenBonusEvent(), 15000);
+            restartGoldenEggSpawner();
 
-            // ปล่อยไข่ทองคำโบนัสลอยผ่านท้องฟ้าเป็นระยะ
-            setTimeout(() => spawnGoldenBonusEvent(), 14000);
-            setInterval(() => spawnGoldenBonusEvent(), 26000);
-
+            lastTimestamp = performance.now();
             requestAnimationFrame(mainLoop);
         };
     </script>
